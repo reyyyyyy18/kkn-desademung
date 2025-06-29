@@ -1,0 +1,5 @@
+body {background: #f4f4f4; font-family: Arial;}
+.login-container {width: 350px; margin: 100px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px #ccc;}
+.login-container h2 {margin-bottom: 20px;}
+.login-container input, .login-container button {width: 100%; padding: 10px; margin: 8px 0;}
+.login-container .error {color: red; margin-bottom: 10px;}
