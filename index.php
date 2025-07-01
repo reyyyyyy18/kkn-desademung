@@ -3,16 +3,19 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontak Desa Demung</title>
+    <title>Website Desa Demung</title>
+    <link rel="stylesheet" href="home.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Flowbite CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 </head>
 
 <body class="bg-gray-50">
-
     <header class="header bg-white shadow sticky top-0 z-50">
         <div class="container mx-auto flex items-center justify-between py-4 px-6">
             <div class="flex items-center gap-3">
@@ -28,7 +31,7 @@
             </button>
             <!-- Navbar -->
             <nav id="navbar" class="fixed md:static top-0 left-0 w-full md:w-auto h-full md:h-auto bg-white md:bg-transparent flex-col md:flex-row gap-6 items-start md:items-center px-8 md:px-0 py-24 md:py-0 hidden md:flex transition-all z-40 md:z-auto">
-                <a href="home.php">Beranda</a>
+                <a href="index.php" class="text-green-700 font-semibold">Beranda</a>
                 <div class="relative group w-full md:w-auto">
                     <button type="button" id="profilDropdownBtn" class="flex items-center gap-1 w-full md:w-auto py-2 md:py-0 focus:outline-none" aria-expanded="false">
                         Profil Desa <i id="chevronIcon" class='bx bx-chevron-down transition-transform duration-200'></i>
@@ -41,52 +44,113 @@
                 </div>
                 <a href="potensi.php">Potensi Desa</a>
                 <a href="berita.php">Berita</a>
-                <a href="kontak.html" class="text-green-700 font-semibold">Kontak</a>
+                <a href="kontak.html">Kontak</a>
                 <a href="admin/login.php" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Login</a>
             </nav>
             <!-- Overlay for mobile -->
             <div id="navbar-overlay" class="fixed inset-0 bg-black bg-opacity-40 z-30 hidden md:hidden"></div>
         </div>
     </header>
-
-    <section class="py-16 bg-green-50 min-h-screen">
-        <div class="container mx-auto px-6">
-            <h1 class="text-3xl font-bold text-green-700 mb-8 text-center">Kontak Desa Demung</h1>
-            <div class="max-w-2xl mx-auto bg-white rounded-lg shadow p-8">
-                <form>
-                    <div class="mb-4">
-                        <label class="block mb-2 text-sm font-medium text-green-700">Nama</label>
-                        <input type="text"
-                            class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
-                            placeholder="Nama Anda">
+    <!-- Home Section dengan Carousel Background -->
+    <section class="py-16 relative overflow-hidden">
+        <!-- Carousel Background -->
+        <div id="carousel-bg" class="absolute inset-0 w-full h-full z-0">
+            <div id="default-carousel" class="relative w-full h-full" data-carousel="slide">
+                <!-- Carousel wrapper -->
+                <div class="relative h-full overflow-hidden rounded-lg">
+                    <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
+                        <img src="https://mercusuar.co/wp-content/uploads/2023/11/pengertian-Desa-dan-Pedesaan.jpg" class="absolute block w-full h-full object-cover object-center opacity-60"
+                            alt="...">
                     </div>
-                    <div class="mb-4">
-                        <label class="block mb-2 text-sm font-medium text-green-700">Email</label>
-                        <input type="email"
-                            class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
-                            placeholder="Email Anda">
+                    <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
+                        <img src="https://www.simpeldesa.com/blog/wp-content/uploads/2020/07/musyawarah-desa.jpg" class="absolute block w-full h-full object-cover object-center opacity-60"
+                            alt="...">
                     </div>
-                    <div class="mb-4">
-                        <label class="block mb-2 text-sm font-medium text-green-700">Pesan</label>
-                        <textarea
-                            class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
-                            rows="5" placeholder="Tulis pesan Anda..."></textarea>
-                    </div>
-                    <button type="submit"
-                        class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">Kirim Pesan</button>
-                </form>
-                <div class="mt-8 text-center text-gray-600">
-                    <div class="flex flex-col items-center gap-2">
-                        <span><i class='bx bx-map text-xl'></i> Alamat: Jl. Desa Demung No. 1, Kecamatan Besuki</span>
-                        <span><i class='bx bx-phone text-xl'></i> Telepon: 0812-3456-7890</span>
-                        <span><i class='bx bx-envelope text-xl'></i> Email: info@desademung.id</span>
+                    <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
+                        <img src="https://www.djkn.kemenkeu.go.id/files/images/2020/12/desa1.png" class="absolute block w-full h-full object-cover object-center opacity-60"
+                            alt="...">
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Content -->
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-10 px-6 relative z-10">
+            <div class="Home-content max-w-xl bg-white/80 rounded-lg p-8 shadow-lg">
+                <h1 class="text-4xl md:text-5xl font-bold text-green-800 mb-4">Selamat Datang di Website Resmi</h1>
+                <h2 class="text-3xl font-semibold text-green-600 mb-4">Desa Demung</h2>
+                <p class="mb-2 text-gray-700">Desa Demung adalah desa yang kaya akan budaya, potensi alam, dan semangat
+                    gotong royong masyarakatnya.</p>
+                <p class="mb-6 text-gray-700">Mari bersama-sama membangun desa yang lebih maju, mandiri, dan sejahtera.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="text-2xl text-gray-600 hover:text-green-600"><i class='bx bxl-tiktok'></i></a>
+                    <a href="#" class="text-2xl text-gray-600 hover:text-green-600"><i class='bx bxl-instagram'></i>
+                    </a>
+                </div>
+            </div>
+            <img src="logo.svg" alt="Logo Desa Demung"
+                class="w-64 h-64 object-contain rounded-full shadow-lg border-4 border-green-200 bg-white/80">
+        </div>
     </section>
-</body>
-
+    <!-- Section Layanan Desa -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-green-700 mb-8 text-center">Layanan Desa</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-green-50 rounded-lg shadow p-6 flex flex-col items-center">
+                    <i class="bx bxs-id-card text-6xl text-green-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Administrasi Kependudukan</h3>
+                    <p class="text-gray-600 text-center">Pembuatan KTP, KK, Akta Kelahiran, Akta Kematian, Pindah Datang/Keluar.</p>
+                </div>
+                <div class="bg-green-50 rounded-lg shadow p-6 flex flex-col items-center">
+                    <i class="bx bxs-file-doc text-6xl text-green-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Pembuatan Surat Keterangan</h3>
+                    <p class="text-gray-600 text-center">Surat Keterangan Domisili, Usaha, Tidak Mampu, Tanah, dan lainnya.</p>
+                </div>
+                <div class="bg-green-50 rounded-lg shadow p-6 flex flex-col items-center">
+                    <i class="bx bxs-building-house text-6xl text-green-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Administrasi Kantor Desa</h3>
+                    <p class="text-gray-600 text-center">Pengelolaan surat masuk/keluar, keuangan desa, arsip, laporan, dan perencanaan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section Berita Terbaru -->
+    <section class="py-16 bg-green-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-green-700 mb-8 text-center">Berita Terbaru</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <?php 
+                include 'koneksi.php';
+                $berita = mysqli_query($conn, "SELECT * FROM berita ORDER BY id DESC LIMIT 3");
+                while ($row = mysqli_fetch_assoc($berita)):
+                ?>
+                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
+                    <?php if ($row['gambar']) echo '<a href="detail_berita.php?id=' . $row['id'] . '"><img class="rounded-t-lg w-full h-48 object-cover" src="admin/' . htmlspecialchars($row['gambar']) . '" alt="' . htmlspecialchars($row['judul']) . '" /></a>'; ?>
+                    <div class="p-5 flex flex-col">
+                        <a href="detail_berita.php?id=<?= $row['id'] ?>">
+                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-green-600 text-left"><?= htmlspecialchars($row['judul']) ?></h5>
+                        </a>
+                        <a href="detail_berita.php?id=<?= $row['id'] ?>" class="mt-auto inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Baca Selengkapnya</a>
+                    </div>
+                </div>
+                <?php endwhile; ?>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-green-700 text-white py-8 mt-12">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <span class="font-bold">Desa Demung</span> &copy; <?= date('Y') ?>. All rights reserved.
+            </div>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-green-200"><i class='bx bxl-tiktok'></i></a>
+                <a href="#" class="hover:text-green-200"><i class='bx bxl-instagram'></i></a>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
     <script>
         // Navbar mobile toggle
         const navbarToggle = document.getElementById('navbar-toggle');
@@ -169,5 +233,6 @@
             closeDropdown();
         });
     </script>
+</body>
 
 </html>

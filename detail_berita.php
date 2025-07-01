@@ -29,10 +29,10 @@ $berita_lain = mysqli_query($conn, "SELECT id, judul, gambar FROM berita WHERE i
         <div class="container mx-auto flex items-center justify-between py-4 px-6">
             <div class="flex items-center gap-3">
                 <img src="logo.svg" alt="Logo Desa Demung" class="h-12 w-12 rounded-full">
-                <a href="home.php" class="text-2xl font-bold text-green-700">Desa Demung</a>
+                <a href="index.php" class="text-2xl font-bold text-green-700">Desa Demung</a>
             </div>
             <nav class="hidden md:flex gap-6 items-center" id="navbar">
-                <a href="home.php" class="text-green-700 font-semibold">Beranda</a>
+                <a href="index.php" class="text-green-700 font-semibold">Beranda</a>
                 <div class="relative group">
                     <a href="#" class="flex items-center gap-1">Profil Desa <i class='bx bx-chevron-down'></i></a>
                     <div class="absolute left-0 mt-2 w-48 bg-white rounded shadow-lg opacity-0 group-hover:opacity-100 transition pointer-events-none group-hover:pointer-events-auto z-10">

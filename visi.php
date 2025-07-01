@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Berita Desa</title>
+    <title>Visi & Misi Desa Demung</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 </head>
+
 <body class="bg-gray-50">
-<?php include 'koneksi.php'; ?>
 
     <header class="header bg-white shadow sticky top-0 z-50">
         <div class="container mx-auto flex items-center justify-between py-4 px-6">
@@ -29,17 +30,17 @@
             <nav id="navbar" class="fixed md:static top-0 left-0 w-full md:w-auto h-full md:h-auto bg-white md:bg-transparent flex-col md:flex-row gap-6 items-start md:items-center px-8 md:px-0 py-24 md:py-0 hidden md:flex transition-all z-40 md:z-auto">
                 <a href="index.php">Beranda</a>
                 <div class="relative group w-full md:w-auto">
-                    <button type="button" id="profilDropdownBtn" class="flex items-center gap-1 w-full md:w-auto py-2 md:py-0 focus:outline-none" aria-expanded="false">
+                    <button type="button" id="profilDropdownBtn" class="text-green-700 font-semibold" class="flex items-center gap-1 w-full md:w-auto py-2 md:py-0 focus:outline-none" aria-expanded="false">
                         Profil Desa <i id="chevronIcon" class='bx bx-chevron-down transition-transform duration-200'></i>
                     </button>
                     <div id="profilDropdown" class="absolute md:absolute left-0 md:mt-2 mt-1 w-11/12 md:w-48 bg-white rounded shadow-lg opacity-0 pointer-events-none transition z-20 border border-gray-100 md:border-none mx-auto md:mx-0" style="right:0;left:0;">
                         <a href="sejarah.html" class="block px-4 py-2 hover:bg-gray-100">Sejarah Desa</a>
-                        <a href="visi.html" class="block px-4 py-2 hover:bg-gray-100">Visi & Misi</a>
+                        <a href="visi.html" class="block px-4 py-2 hover:bg-gray-100 text-green-700 font-semibold">Visi & Misi</a>
                         <a href="perangkat.php" class="block px-4 py-2 hover:bg-gray-100">Perangkat Desa</a>
                     </div>
                 </div>
                 <a href="potensi.php">Potensi Desa</a>
-                <a href="berita.php" class="text-green-700 font-semibold">Berita</a>
+                <a href="berita.php">Berita</a>
                 <a href="kontak.html">Kontak</a>
                 <a href="admin/login.php" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Login</a>
             </nav>
@@ -50,30 +51,31 @@
 
     <section class="py-16 bg-green-50 min-h-screen">
         <div class="container mx-auto px-6">
-            <h1 class="text-3xl font-bold text-green-700 mb-2 text-center">Daftar Berita Terbaru</h1>
-            <h6 class="text-lg text-gray-600 mb-8 text-center">Daftar Berita Desa Terbaru</h6>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <?php 
-                $berita = mysqli_query($conn, "SELECT * FROM berita ORDER BY id DESC");
-                if ($berita && mysqli_num_rows($berita) > 0):
-                    while ($row = mysqli_fetch_assoc($berita)):
-                ?>
-                <a href="detail_berita.php?id=<?= $row['id'] ?>" class="block max-w-sm bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg transition overflow-hidden">
-                    <?php if ($row['gambar']) echo '<img src="admin/' . htmlspecialchars($row['gambar']) . '" class="w-full h-48 object-cover">'; ?>
-                    <div class="p-5">
-                        <h2 class="text-xl font-bold text-green-700 mb-2 text-center"><?= htmlspecialchars($row['judul']) ?></h2>
-                    </div>
-                </a>
-                <?php endwhile; else: ?>
-                <p class="col-span-3 text-center text-gray-500">Tidak ada berita ditemukan.</p>
-                <?php endif; ?>
+            <h1 class="text-3xl font-bold text-green-700 mb-8 text-center">Visi & Misi Desa Demung</h1>
+            <div class="bg-white rounded-lg shadow p-8 max-w-3xl mx-auto">
+                <h2 class="text-2xl font-semibold text-green-700 mb-4">Visi</h2>
+                <p class="text-gray-700 mb-8">
+                    "Terwujudnya Masyarakat Desa Demung yang Beriman, Jujur, Adil, Sejahtera, Dan Berbudaya."
+                </p>
+                <h2 class="text-2xl font-semibold text-green-700 mb-4">Misi</h2>
+                <ol class="list-decimal pl-6 text-gray-700 space-y-2">
+                    <li>Mewujudkan Sumber Daya Manusia (SDM) Beriman, Bertaqwa, Berbudi Pekerti Luhur, Bugar dan
+                        Berbudaya.</li>
+                    <li>Mewujudkan Pemerintahan Desa yang Jujur dan Berwibawa.</li>
+                    <li>Mewujudkan Sarana dan Prasarana di Desa yang Memadai.</li>
+                    <li>Mewujudkan Perekonomian Melalui Pembangunan Pertanian, Perikanan, Peternakan, Pariwisata/Budaya,
+                        dan Pengembangan Industri kecil.</li>
+                    <li>Meningkatkan Kualitas Pelayanan Kesehatan Masyarakat Desa.</li>
+                    <li>Meningkatkan Pendidikan Non Formal dan Pendidikan Formal</li>
+                    <li>Meningkatkan Tata Kelola yang Baik Dalam Memeberikan Pelayanan Kepada Masyarakat.</li>
+                    <li>Mewujudkan Keamanan Masyarakat Desa Demung</li>
+                </ol>
             </div>
         </div>
     </section>
 
-    </header>
-
-        <script>
+    <script src="script.js"></script>
+    <script>
         // Navbar mobile toggle
         const navbarToggle = document.getElementById('navbar-toggle');
         const navbar = document.getElementById('navbar');
@@ -157,4 +159,5 @@
     </script>
 
 </body>
+
 </html>
