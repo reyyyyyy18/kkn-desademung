@@ -35,14 +35,14 @@
                         Profil Desa <i id="chevronIcon" class='bx bx-chevron-down transition-transform duration-200'></i>
                     </button>
                     <div id="profilDropdown" class="absolute md:absolute left-0 md:mt-2 mt-1 w-11/12 md:w-48 bg-white rounded shadow-lg opacity-0 pointer-events-none transition z-20 border border-gray-100 md:border-none mx-auto md:mx-0" style="right:0;left:0;">
-                        <a href="sejarah.html" class="block px-4 py-2 hover:bg-gray-100">Sejarah Desa</a>
-                        <a href="visi.html" class="block px-4 py-2 hover:bg-gray-100">Visi & Misi</a>
+                        <a href="sejarah.php" class="block px-4 py-2 hover:bg-gray-100">Sejarah Desa</a>
+                        <a href="visi.php" class="block px-4 py-2 hover:bg-gray-100">Visi & Misi</a>
                         <a href="perangkat.php" class="block px-4 py-2 hover:bg-gray-100">Perangkat Desa</a>
                     </div>
                 </div>
                 <a href="potensi.php" class="text-green-700 font-semibold">Potensi Desa</a>
                 <a href="berita.php">Berita</a>
-                <a href="kontak.html">Kontak</a>
+                <a href="kontak.php">Kontak</a>
                 <a href="admin/login.php" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Login</a>
             </nav>
             <!-- Overlay for mobile -->

@@ -36,14 +36,14 @@ $berita_lain = mysqli_query($conn, "SELECT id, judul, gambar FROM berita WHERE i
                 <div class="relative group">
                     <a href="#" class="flex items-center gap-1">Profil Desa <i class='bx bx-chevron-down'></i></a>
                     <div class="absolute left-0 mt-2 w-48 bg-white rounded shadow-lg opacity-0 group-hover:opacity-100 transition pointer-events-none group-hover:pointer-events-auto z-10">
-                        <a href="sejarah.html" class="block px-4 py-2 hover:bg-gray-100">Sejarah Desa</a>
-                        <a href="visi.html" class="block px-4 py-2 hover:bg-gray-100">Visi & Misi</a>
+                        <a href="sejarah.php" class="block px-4 py-2 hover:bg-gray-100">Sejarah Desa</a>
+                        <a href="visi.php" class="block px-4 py-2 hover:bg-gray-100">Visi & Misi</a>
                         <a href="perangkat.php" class="block px-4 py-2 hover:bg-gray-100">Perangkat Desa</a>
                     </div>
                 </div>
                 <a href="potensi.php">Potensi Desa</a>
                 <a href="berita.php">Berita</a>
-                <a href="kontak.html">Kontak</a>
+                <a href="kontak.php">Kontak</a>
                 <a href="admin/login.php" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Login</a>
             </nav>
         </div>
