@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+    <link rel="shortcut icon" href="logo.svg" type="image/x-icon">
 </head>
 <body class="bg-gray-50">
 <?php include 'koneksi.php'; ?>
@@ -71,7 +72,17 @@
         </div>
     </section>
 
-    </header>
+    <footer class="bg-green-700 text-white py-8 mt-12">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <span class="font-bold">Desa Demung</span> &copy; <?= date('Y') ?>. All rights reserved.
+            </div>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-green-200"><i class='bx bxl-tiktok'></i></a>
+                <a href="#" class="hover:text-green-200"><i class='bx bxl-instagram'></i></a>
+            </div>
+        </div>
+    </footer>
 
         <script>
         // Navbar mobile toggle

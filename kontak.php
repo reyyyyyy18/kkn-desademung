@@ -9,6 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+    <link rel="shortcut icon" href="logo.svg" type="image/x-icon">
 </head>
 
 <body class="bg-gray-50">
@@ -50,9 +51,11 @@
     </header>
 
     <section class="py-16 bg-green-50 min-h-screen">
-        <div class="container mx-auto px-6">
-            <h1 class="text-3xl font-bold text-green-700 mb-8 text-center">Kontak Desa Demung</h1>
-            <div class="max-w-2xl mx-auto bg-white rounded-lg shadow p-8">
+    <div class="container mx-auto px-6">
+        <h1 class="text-3xl font-bold text-green-700 mb-8 text-center">Kontak Desa Demung</h1>
+        <div class="max-w-5xl mx-auto bg-white rounded-lg shadow p-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+            <!-- Form Kontak -->
+            <div>
                 <form>
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-medium text-green-700">Nama</label>
@@ -73,18 +76,31 @@
                             rows="5" placeholder="Tulis pesan Anda..."></textarea>
                     </div>
                     <button type="submit"
-                        class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">Kirim Pesan</button>
+                        class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 w-full">Kirim Pesan</button>
                 </form>
-                <div class="mt-8 text-center text-gray-600">
-                    <div class="flex flex-col items-center gap-2">
-                        <span><i class='bx bx-map text-xl'></i> Alamat: Jl. Desa Demung No. 1, Kecamatan Besuki</span>
-                        <span><i class='bx bx-phone text-xl'></i> Telepon: 0812-3456-7890</span>
-                        <span><i class='bx bx-envelope text-xl'></i> Email: info@desademung.id</span>
-                    </div>
-                </div>
+                
+            </div>
+            <!-- Google Maps -->
+            <div class="w-full h-80 md:h-full rounded-lg overflow-hidden shadow">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.123456789!2d113.456789!3d-8.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sDesa%20Demung!5e0!3m2!1sid!2sid!4v1680000000000!5m2!1sid!2sid" 
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+<footer class="bg-green-700 text-white py-8 mt-12">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <span class="font-bold">Desa Demung</span> &copy; <?= date('Y') ?>. All rights reserved.
+            </div>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-green-200"><i class='bx bxl-tiktok'></i></a>
+                <a href="#" class="hover:text-green-200"><i class='bx bxl-instagram'></i></a>
+            </div>
+        </div>
+    </footer>
 </body>
 
     <script>
