@@ -4,13 +4,12 @@ include '../koneksi.php';
 if (isset($_POST['tambah'])) {
     $nama = $_POST['nama'];
     $deskripsi = $_POST['deskripsi'];
-    $nomor_wa = $_POST['nomor_wa'];
-    $foto = '';
-    if ($_FILES['foto']['name']) {
-        $foto = 'uploads/' . basename($_FILES['foto']['name']);
-        move_uploaded_file($_FILES['foto']['tmp_name'], $foto);
+    $gambar = '';
+    if ($_FILES['gambar']['name']) {
+        $gambar = 'uploads/' . basename($_FILES['gambar']['name']);
+        move_uploaded_file($_FILES['gambar']['tmp_name'], $gambar);
     }
-    $sql = "INSERT INTO produk (nama, foto, deskripsi, nomor_wa) VALUES ('$nama', '$foto', '$deskripsi', '$nomor_wa')";
+    $sql = "INSERT INTO produk (gambar, nama, deskripsi) VALUES ('$gambar', '$nama', '$deskripsi')";
     mysqli_query($conn, $sql);
     header('Location: dashboard.php?page=produk');
     exit();
@@ -31,45 +30,73 @@ if (isset($_POST['update'])) {
     $id = $_POST['id'];
     $nama = $_POST['nama'];
     $deskripsi = $_POST['deskripsi'];
-    $nomor_wa = $_POST['nomor_wa'];
-    $foto = $_POST['foto_lama'];
-    if ($_FILES['foto']['name']) {
-        $foto = 'uploads/' . basename($_FILES['foto']['name']);
-        move_uploaded_file($_FILES['foto']['tmp_name'], $foto);
+    $gambar = isset($_POST['gambar_lama']) ? $_POST['gambar_lama'] : '';
+    if ($_FILES['gambar']['name']) {
+        $gambar = 'uploads/' . basename($_FILES['gambar']['name']);
+        move_uploaded_file($_FILES['gambar']['tmp_name'], $gambar);
     }
-    $sql = "UPDATE produk SET nama='$nama', foto='$foto', deskripsi='$deskripsi', nomor_wa='$nomor_wa' WHERE id=$id";
+    $sql = "UPDATE produk SET gambar='$gambar', nama='$nama', deskripsi='$deskripsi' WHERE id=$id";
     mysqli_query($conn, $sql);
     header('Location: dashboard.php?page=produk');
     exit();
 }
 $produk = mysqli_query($conn, "SELECT * FROM produk ORDER BY id DESC");
 ?>
-<h2>CRUD Produk</h2>
-<form method="post" enctype="multipart/form-data">
-    <input type="hidden" name="id" value="<?= $edit['id'] ?? '' ?>">
-    <input type="hidden" name="foto_lama" value="<?= $edit['foto'] ?? '' ?>">
-    <input type="text" name="nama" placeholder="Nama Produk" value="<?= $edit['nama'] ?? '' ?>" required><br>
-    <input type="file" name="foto" accept="image/*"><br>
-    <textarea name="deskripsi" placeholder="Deskripsi" required><?= $edit['deskripsi'] ?? '' ?></textarea><br>
-    <input type="text" name="nomor_wa" placeholder="Nomor WA Contoh( 62822987578 )" value="<?= $edit['nomor_wa'] ?? '' ?>" required><br>
-    <?php if ($edit): ?>
-        <button type="submit" name="update">Update</button>
-    <?php else: ?>
-        <button type="submit" name="tambah">Tambah</button>
-    <?php endif; ?>
-</form>
-<table border="1" cellpadding="5" cellspacing="0">
-    <tr><th>Foto</th><th>Nama</th><th>Deskripsi</th><th>Nomor WA</th><th>Aksi</th></tr>
-    <?php while ($row = mysqli_fetch_assoc($produk)): ?>
-    <tr>
-        <td><?php if ($row['foto']) echo '<img src="../admin/'.$row['foto'].'" width="80">'; ?></td>
-        <td><?= htmlspecialchars($row['nama']) ?></td>
-        <td><?= htmlspecialchars($row['deskripsi']) ?></td>
-        <td><?= htmlspecialchars($row['nomor_wa']) ?></td>
-        <td>
-            <a href="?page=produk&edit=<?= $row['id'] ?>">Edit</a> |
-            <a href="?page=produk&hapus=<?= $row['id'] ?>" onclick="return confirm('Hapus produk ini?')">Hapus</a>
-        </td>
-    </tr>
-    <?php endwhile; ?>
-</table>
+<div class="max-w-3xl mx-auto py-6">
+    <h2 class="text-2xl font-bold text-green-700 mb-6">CRUD Produk</h2>
+    <form method="post" enctype="multipart/form-data" class="bg-white rounded shadow p-4 mb-8 space-y-4">
+        <input type="hidden" name="id" value="<?= isset($edit['id']) ? $edit['id'] : '' ?>">
+        <input type="hidden" name="gambar_lama" value="<?= isset($edit['gambar']) ? $edit['gambar'] : '' ?>">
+        <div>
+            <label class="block mb-1 font-semibold">Gambar</label>
+            <input type="file" name="gambar" accept="image/*" class="block w-full text-sm">
+            <?php if (!empty($edit) && !empty($edit['gambar'])): ?>
+                <img src="<?= $edit['gambar'] ?>" alt="Gambar" class="w-24 mt-2 rounded">
+            <?php endif; ?>
+        </div>
+        <div>
+            <label class="block mb-1 font-semibold">Nama Produk</label>
+            <input type="text" name="nama" placeholder="Nama Produk" value="<?= isset($edit['nama']) ? $edit['nama'] : '' ?>" required class="w-full border rounded px-3 py-2">
+        </div>
+        <div>
+            <label class="block mb-1 font-semibold">Deskripsi</label>
+            <textarea name="deskripsi" placeholder="Deskripsi" required class="w-full border rounded px-3 py-2 min-h-[80px]"><?= isset($edit['deskripsi']) ? $edit['deskripsi'] : '' ?></textarea>
+        </div>
+        <div>
+            <?php if ($edit): ?>
+                <button type="submit" name="update" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">Update</button>
+            <?php else: ?>
+                <button type="submit" name="tambah" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Tambah</button>
+            <?php endif; ?>
+        </div>
+    </form>
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white rounded shadow text-sm">
+            <thead>
+                <tr class="bg-green-100 text-green-800">
+                    <th class="py-2 px-4">Gambar</th>
+                    <th class="py-2 px-4">Nama</th>
+                    <th class="py-2 px-4">Deskripsi</th>
+                    <th class="py-2 px-4">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($row = mysqli_fetch_assoc($produk)): ?>
+                <tr class="border-b">
+                    <td class="py-2 px-4 text-center">
+                        <?php if (!empty($row['gambar'])): ?>
+                            <img src="<?= $row['gambar'] ?>" class="w-16 h-16 object-cover rounded mx-auto">
+                        <?php endif; ?>
+                    </td>
+                    <td class="py-2 px-4"><?= htmlspecialchars($row['nama']) ?></td>
+                    <td class="py-2 px-4 max-w-xs break-words"><?= htmlspecialchars($row['deskripsi']) ?></td>
+                    <td class="py-2 px-4">
+                        <a href="?page=produk&edit=<?= $row['id'] ?>" class="text-blue-600 hover:underline">Edit</a> |
+                        <a href="?page=produk&hapus=<?= $row['id'] ?>" onclick="return confirm('Hapus produk ini?')" class="text-red-600 hover:underline">Hapus</a>
+                    </td>
+                </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+    </div>
+</div>

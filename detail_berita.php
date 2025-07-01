@@ -44,6 +44,7 @@ $berita_lain = mysqli_query($conn, "SELECT id, judul, gambar FROM berita WHERE i
                 <a href="potensi.php">Potensi Desa</a>
                 <a href="berita.php">Berita</a>
                 <a href="kontak.html">Kontak</a>
+                <a href="admin/login.php" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Login</a>
             </nav>
         </div>
     </header>
