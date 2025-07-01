@@ -33,7 +33,7 @@ $berita_lain = mysqli_query($conn, "SELECT id, judul, gambar FROM berita WHERE i
                 <a href="index.php" class="text-2xl font-bold text-green-700">Desa Demung</a>
             </div>
             <nav class="hidden md:flex gap-6 items-center" id="navbar">
-                <a href="index.php" class="text-green-700 font-semibold">Beranda</a>
+                <a href="index.php">Beranda</a>
                 <div class="relative group">
                     <a href="#" class="flex items-center gap-1">Profil Desa <i class='bx bx-chevron-down'></i></a>
                     <div class="absolute left-0 mt-2 w-48 bg-white rounded shadow-lg opacity-0 group-hover:opacity-100 transition pointer-events-none group-hover:pointer-events-auto z-10">
@@ -43,7 +43,7 @@ $berita_lain = mysqli_query($conn, "SELECT id, judul, gambar FROM berita WHERE i
                     </div>
                 </div>
                 <a href="potensi.php">Potensi Desa</a>
-                <a href="berita.php">Berita</a>
+                <a href="berita.php" class="text-green-700 font-semibold">Berita</a>
                 <a href="kontak.php">Kontak</a>
                 <a href="admin/login.php" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Login</a>
             </nav>
@@ -72,7 +72,7 @@ $berita_lain = mysqli_query($conn, "SELECT id, judul, gambar FROM berita WHERE i
     <footer class="bg-green-700 text-white py-8 mt-12">
         <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
             <div class="mb-4 md:mb-0">
-                <span class="font-bold">Desa Demung</span> &copy; <?= date('Y') ?>. All rights reserved.
+                <span class="font-bold">Desa Demung</span> &copy; <?= date('Y') ?>. KKN UNIVERSITAS NURUL JADID 25.
             </div>
             <div class="flex gap-4">
                 <a href="#" class="hover:text-green-200"><i class='bx bxl-tiktok'></i></a>

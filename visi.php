@@ -54,11 +54,11 @@
         <div class="container mx-auto px-6">
             <h1 class="text-3xl font-bold text-green-700 mb-8 text-center">Visi & Misi Desa Demung</h1>
             <div class="bg-white rounded-lg shadow p-8 max-w-3xl mx-auto">
-                <h2 class="text-2xl font-semibold text-green-700 mb-4">Visi</h2>
+                <h2 class="text-2xl font-semibold text-green-700 mb-4 text-center">Visi</h2>
                 <p class="text-gray-700 mb-8">
                     "Terwujudnya Masyarakat Desa Demung yang Beriman, Jujur, Adil, Sejahtera, Dan Berbudaya."
                 </p>
-                <h2 class="text-2xl font-semibold text-green-700 mb-4">Misi</h2>
+                <h2 class="text-2xl font-semibold text-green-700 mb-4 text-center">Misi</h2>
                 <ol class="list-decimal pl-6 text-gray-700 space-y-2">
                     <li>Mewujudkan Sumber Daya Manusia (SDM) Beriman, Bertaqwa, Berbudi Pekerti Luhur, Bugar dan
                         Berbudaya.</li>
@@ -77,7 +77,7 @@
     <footer class="bg-green-700 text-white py-8 mt-12">
         <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
             <div class="mb-4 md:mb-0">
-                <span class="font-bold">Desa Demung</span> &copy; <?= date('Y') ?>. All rights reserved.
+                <span class="font-bold">Desa Demung</span> &copy; <?= date('Y') ?>. KKN UNIVERSITAS NURUL JADID 25.
             </div>
             <div class="flex gap-4">
                 <a href="#" class="hover:text-green-200"><i class='bx bxl-tiktok'></i></a>

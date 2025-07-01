@@ -75,7 +75,7 @@
     <footer class="bg-green-700 text-white py-8 mt-12">
         <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
             <div class="mb-4 md:mb-0">
-                <span class="font-bold">Desa Demung</span> &copy; <?= date('Y') ?>. All rights reserved.
+                <span class="font-bold">Desa Demung</span> &copy; <?= date('Y') ?>. KKN UNIVERSITAS NURUL JADID 25.
             </div>
             <div class="flex gap-4">
                 <a href="#" class="hover:text-green-200"><i class='bx bxl-tiktok'></i></a>

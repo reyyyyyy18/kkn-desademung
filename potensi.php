@@ -63,6 +63,7 @@
         <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
           <?php if ($row['foto']) echo '<img src="admin/' . htmlspecialchars($row['foto']) . '" alt="' . htmlspecialchars($row['nama']) . '" class="w-24 h-24 object-cover rounded mb-4">'; ?>
           <h3 class="text-lg font-semibold mb-2 text-green-700 text-center"><?= htmlspecialchars($row['nama']) ?></h3>
+          <h4 class="text-1xl font-semibold mb-3 text-green-700 text-center"><?= htmlspecialchars($row['alamat']) ?></h4>
           <p class="text-gray-600 text-center mb-2"><?= htmlspecialchars($row['deskripsi']) ?></p>
           <a href="https://wa.me/<?= htmlspecialchars($row['nomor_wa']) ?>" target="_blank" class="inline-block bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700"><i class='bx bxl-whatsapp'></i> Hubungi via WA</a>
         </div>
@@ -86,7 +87,7 @@
 <footer class="bg-green-700 text-white py-8 mt-12">
         <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
             <div class="mb-4 md:mb-0">
-                <span class="font-bold">Desa Demung</span> &copy; <?= date('Y') ?>. All rights reserved.
+                <span class="font-bold">Desa Demung</span> &copy; <?= date('Y') ?>. KKN UNIVERSITAS NURUL JADID 25.
             </div>
             <div class="flex gap-4">
                 <a href="#" class="hover:text-green-200"><i class='bx bxl-tiktok'></i></a>

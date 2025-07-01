@@ -3,6 +3,7 @@ include '../koneksi.php';
 // Handle tambah, edit, hapus produk
 if (isset($_POST['tambah'])) {
     $nama = $_POST['nama'];
+    $alamat = $_POST['alamat'];
     $deskripsi = $_POST['deskripsi'];
     $nomor_wa = $_POST['nomor_wa'];
     $foto = '';
@@ -10,7 +11,7 @@ if (isset($_POST['tambah'])) {
         $foto = 'uploads/' . basename($_FILES['foto']['name']);
         move_uploaded_file($_FILES['foto']['tmp_name'], $foto);
     }
-    $sql = "INSERT INTO produk (nama, foto, deskripsi, nomor_wa) VALUES ('$nama', '$foto', '$deskripsi', '$nomor_wa')";
+    $sql = "INSERT INTO produk (nama, foto, alamat, deskripsi, nomor_wa) VALUES ('$nama', '$foto', '$alamat', '$deskripsi', '$nomor_wa')";
     mysqli_query($conn, $sql);
     header('Location: dashboard.php?page=produk');
     exit();
@@ -30,6 +31,7 @@ if (isset($_GET['edit'])) {
 if (isset($_POST['update'])) {
     $id = $_POST['id'];
     $nama = $_POST['nama'];
+    $alamat = $_POST['alamat'];
     $deskripsi = $_POST['deskripsi'];
     $nomor_wa = $_POST['nomor_wa'];
     $foto = $_POST['foto_lama'];
@@ -37,7 +39,7 @@ if (isset($_POST['update'])) {
         $foto = 'uploads/' . basename($_FILES['foto']['name']);
         move_uploaded_file($_FILES['foto']['tmp_name'], $foto);
     }
-    $sql = "UPDATE produk SET nama='$nama', foto='$foto', deskripsi='$deskripsi', nomor_wa='$nomor_wa' WHERE id=$id";
+    $sql = "UPDATE produk SET nama='$nama', foto='$foto', alamat='$alamat', deskripsi='$deskripsi', nomor_wa='$nomor_wa' WHERE id=$id";
     mysqli_query($conn, $sql);
     header('Location: dashboard.php?page=produk');
     exit();
@@ -60,6 +62,9 @@ $produk = mysqli_query($conn, "SELECT * FROM produk ORDER BY id DESC");
             <label class="block mb-1 font-semibold">Nama Produk</label>
             <input type="text" name="nama" placeholder="Nama Produk" value="<?= $edit['nama'] ?? '' ?>" required class="w-full border rounded px-3 py-2">
         </div>
+        <div></div>
+            <label class="block mb-1 font-semibold">Alamat</label>
+            <input type="text" name="alamat" placeholder="Alamat" value="<?= $edit['alamat'] ?? '' ?>" required class="w-full border rounded px-3 py-2">
         <div>
             <label class="block mb-1 font-semibold">Deskripsi</label>
             <textarea name="deskripsi" placeholder="Deskripsi" required class="w-full border rounded px-3 py-2 min-h-[80px]"><?= $edit['deskripsi'] ?? '' ?></textarea>
@@ -82,6 +87,7 @@ $produk = mysqli_query($conn, "SELECT * FROM produk ORDER BY id DESC");
                 <tr class="bg-green-100 text-green-800">
                     <th class="py-2 px-4">Foto</th>
                     <th class="py-2 px-4">Nama</th>
+                    <th class="py-2 px-4">Alamat</th>
                     <th class="py-2 px-4">Deskripsi</th>
                     <th class="py-2 px-4">Nomor WA</th>
                     <th class="py-2 px-4">Aksi</th>
@@ -96,6 +102,7 @@ $produk = mysqli_query($conn, "SELECT * FROM produk ORDER BY id DESC");
                         <?php endif; ?>
                     </td>
                     <td class="py-2 px-4"><?= htmlspecialchars($row['nama']) ?></td>
+                    <td class="py-2 px-4"><?= htmlspecialchars($row['alamat']) ?></td>
                     <td class="py-2 px-4 max-w-xs break-words"><?= htmlspecialchars($row['deskripsi']) ?></td>
                     <td class="py-2 px-4"><?= htmlspecialchars($row['nomor_wa']) ?></td>
                     <td class="py-2 px-4">

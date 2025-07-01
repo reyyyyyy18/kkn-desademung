@@ -83,7 +83,7 @@
             <!-- Google Maps -->
             <div class="w-full h-80 md:h-full rounded-lg overflow-hidden shadow">
                 <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.123456789!2d113.456789!3d-8.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sDesa%20Demung!5e0!3m2!1sid!2sid!4v1680000000000!5m2!1sid!2sid" 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.590687550191!2d113.7094277735794!3d-7.726987576570314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd71efcd20d6b39%3A0xc35e4f85077c7e7d!2sKantor%20Kepala%20Desa%20Demung!5e0!3m2!1sid!2sid!4v1751357868733!5m2!1sid!2sid" 
                     width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
             </div>
@@ -93,7 +93,7 @@
 <footer class="bg-green-700 text-white py-8 mt-12">
         <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
             <div class="mb-4 md:mb-0">
-                <span class="font-bold">Desa Demung</span> &copy; <?= date('Y') ?>. All rights reserved.
+                <span class="font-bold">Desa Demung</span> &copy; <?= date('Y') ?>. KKN UNIVERSITAS NURUL JADID 25.
             </div>
             <div class="flex gap-4">
                 <a href="#" class="hover:text-green-200"><i class='bx bxl-tiktok'></i></a>
