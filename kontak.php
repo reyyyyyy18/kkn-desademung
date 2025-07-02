@@ -87,7 +87,7 @@
                         var email = document.getElementById('email').value;
                         var pesan = document.getElementById('pesan').value;
                         var no_wa = '6281230650332'; // Ganti dengan nomor WA kades
-                        var text = `Assalamualaikum, Saya ${nama} (${email}).%0A${pesan}`;
+                        var text = `Assalamualaikum pak kades, Saya ${nama}, email saya ${email}.%0A${pesan}`;
                         var url = `https://wa.me/${no_wa}?text=${text}`;
                         window.open(url, '_blank');
                         return false;

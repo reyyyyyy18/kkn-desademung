@@ -41,7 +41,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'berita';
             </ul>
         </aside>
         <!-- Mobile Menu -->
-        <ul id="adminNavMobile" class="md:hidden fixed top-0 left-0 w-3/4 max-w-xs h-full bg-green-700 text-white z-40 px-6 py-8 space-y-3 transform -translate-x-full transition-transform duration-200">
+        <ul id="adminNavMobile" class="md:hidden fixed top-9 left-0 w-3/4 max-w-xs h-full bg-green-700 text-white z-40 px-6 py-8 space-y-3 transform -translate-x-full transition-transform duration-200">
             <li><a href="?page=stats" class="block py-2 px-3 rounded hover:bg-green-800 <?= $page === 'stats' ? 'bg-green-800' : '' ?>">Dashboard</a></li>    
             <li><a href="?page=user" class="block py-2 px-3 rounded hover:bg-green-800 <?= $page === 'user' ? 'bg-green-800' : '' ?>">User</a></li>            
             <li><a href="?page=berita" class="block py-2 px-3 rounded hover:bg-green-800 <?= $page === 'berita' ? 'bg-green-800' : '' ?>">Berita</a></li>
