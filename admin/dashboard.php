@@ -14,6 +14,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'berita';
     <title>Dashboard Admin</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+       <link rel="shortcut icon" href="../logo.svg" type="image/x-icon">
 </head>
 <body class="bg-gray-50 min-h-screen">
     <!-- Responsive Navbar -->
@@ -31,6 +32,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'berita';
         <aside class="hidden md:block bg-green-700 text-white w-56 min-h-screen px-4 py-6">
             <h2 class="text-xl font-bold mb-6">Admin Panel</h2>
             <ul class="space-y-2 font-semibold">
+                <li><a href="?page=stats" class="block py-2 px-3 rounded hover:bg-green-800 <?= $page === 'stats' ? 'bg-green-800' : '' ?>">Dashboard</a></li>               
                 <li><a href="?page=user" class="block py-2 px-3 rounded hover:bg-green-800 <?= $page === 'user' ? 'bg-green-800' : '' ?>">User</a></li>               
                 <li><a href="?page=berita" class="block py-2 px-3 rounded hover:bg-green-800 <?= $page === 'berita' ? 'bg-green-800' : '' ?>">Berita</a></li>
                 <li><a href="?page=anggota" class="block py-2 px-3 rounded hover:bg-green-800 <?= $page === 'anggota' ? 'bg-green-800' : '' ?>">Anggota</a></li>
@@ -41,6 +43,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'berita';
         </aside>
         <!-- Mobile Menu -->
         <ul id="adminNavMobile" class="md:hidden fixed top-0 left-0 w-3/4 max-w-xs h-full bg-green-700 text-white z-40 px-6 py-8 space-y-3 transform -translate-x-full transition-transform duration-200">
+            <li><a href="?page=stats" class="block py-2 px-3 rounded hover:bg-green-800 <?= $page === 'stats' ? 'bg-green-800' : '' ?>">Dashboard</a></li>    
             <li><a href="?page=user" class="block py-2 px-3 rounded hover:bg-green-800 <?= $page === 'user' ? 'bg-green-800' : '' ?>">User</a></li>            
             <li><a href="?page=berita" class="block py-2 px-3 rounded hover:bg-green-800 <?= $page === 'berita' ? 'bg-green-800' : '' ?>">Berita</a></li>
             <li><a href="?page=anggota" class="block py-2 px-3 rounded hover:bg-green-800 <?= $page === 'anggota' ? 'bg-green-800' : '' ?>">Anggota</a></li>
@@ -63,6 +66,8 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'berita';
                 include 'produk_crud.php';
             } elseif ($page === 'wisata') {
                 include 'wisata_crud.php';
+            } elseif ($page === 'stats') {
+                include 'stats.php';
             }
             ?>
         </main>
