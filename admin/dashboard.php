@@ -18,7 +18,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'berita';
 </head>
 <body class="bg-gray-50 min-h-screen">
     <!-- Responsive Navbar -->
-    <nav class="bg-green-700 text-white px-4 py-3 flex items-center justify-between md:hidden">
+    <nav class="bg-green-700 text-white px-4 py-3 flex items-center justify-between md:hidden sticky top-0 z-50">
         <div class="font-bold text-lg">Admin Panel</div>
         <button id="adminNavToggle" class="focus:outline-none">
             <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -26,10 +26,9 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'berita';
             </svg>
         </button>
     </nav>
-    <!-- Sidebar (desktop) & Mobile Menu -->
-    <div class="flex">
+    <div class="flex flex-col md:flex-row">
         <!-- Sidebar -->
-        <aside class="hidden md:block bg-green-700 text-white w-56 min-h-screen px-4 py-6">
+        <aside class="hidden md:block bg-green-700 text-white w-full md:w-56 min-h-screen px-4 py-6 md:sticky md:top-0">
             <h2 class="text-xl font-bold mb-6">Admin Panel</h2>
             <ul class="space-y-2 font-semibold">
                 <li><a href="?page=stats" class="block py-2 px-3 rounded hover:bg-green-800 <?= $page === 'stats' ? 'bg-green-800' : '' ?>">Dashboard</a></li>               
@@ -54,7 +53,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'berita';
         <!-- Overlay for mobile menu -->
         <div id="adminNavOverlay" class="md:hidden fixed inset-0 bg-black bg-opacity-40 z-30 hidden"></div>
         <!-- Main Content -->
-        <main class="flex-1 p-4 md:p-8">
+        <main class="flex-1 p-2 sm:p-4 md:p-8 transition-all duration-200">
             <?php
             if ($page === 'user') {
                 include 'user_crud.php';          

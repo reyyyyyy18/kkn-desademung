@@ -56,7 +56,7 @@ $user_tahun = getYearlyStats($conn, 'user', 'created_at');
 <body class="bg-gray-50 min-h-screen">
     <div class="container mx-auto px-6 py-12">
         <h1 class="text-3xl font-bold text-green-700 mb-8 text-center">Statistik Website Desa Demung</h1>
-        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 justify-items-stretch mb-12">
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 justify-items-stretch mb-12">
             <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center transition hover:scale-105 hover:shadow-lg" data-aos="zoom-in">
                 <i class='bx bx-news text-4xl text-green-600 mb-2'></i>
                 <div class="text-2xl font-bold text-green-700"><?php echo $jumlah_berita; ?></div>
