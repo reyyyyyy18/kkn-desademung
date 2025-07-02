@@ -51,7 +51,7 @@ $user_tahun = getYearlyStats($conn, 'user', 'created_at');
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-       <link rel="shortcut icon" href="logo.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="logo.svg" type="image/x-icon">
 </head>
 <body class="bg-gray-50 min-h-screen">
     <div class="container mx-auto px-6 py-12">
@@ -83,8 +83,6 @@ $user_tahun = getYearlyStats($conn, 'user', 'created_at');
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
                 <h2 class="text-xl font-bold text-green-700">Statistik Perkembangan Data</h2>
                 <select id="filterWaktu" class="border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400">
-                    <option value="hari">Per Hari</option>
-                    <option value="minggu">Per Minggu</option>
                     <option value="bulan">Per Bulan</option>
                     <option value="tahun">Per Tahun</option>
                 </select>
@@ -95,20 +93,6 @@ $user_tahun = getYearlyStats($conn, 'user', 'created_at');
     <script>AOS.init();</script>
     <script>
 const dataStat = {
-    hari: {
-        labels: ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"],
-        berita: [2, 3, 1, 4, 2, 5, 3],
-        produk: [1, 2, 1, 2, 1, 2, 1],
-        wisata: [0, 1, 0, 1, 0, 1, 0],
-        user: [1, 1, 2, 1, 1, 2, 1],
-    },
-    minggu: {
-        labels: ["Minggu 1", "Minggu 2", "Minggu 3", "Minggu 4"],
-        berita: [10, 12, 8, 15],
-        produk: [5, 6, 4, 7],
-        wisata: [2, 3, 1, 2],
-        user: [3, 4, 2, 5],
-    },
     bulan: {
         labels: <?php echo json_encode($berita_bulan['labels']); ?>,
         berita: <?php echo json_encode($berita_bulan['data']); ?>,
@@ -132,41 +116,29 @@ function renderChart(filter) {
     const d = dataStat[filter];
     if (statsChart) statsChart.destroy();
     statsChart = new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: d.labels,
             datasets: [
                 {
                     label: 'Berita',
                     data: d.berita,
-                    borderColor: '#16a34a',
-                    backgroundColor: 'rgba(22,163,74,0.1)',
-                    tension: 0.4,
-                    fill: true,
+                    backgroundColor: '#16a34a',
                 },
                 {
                     label: 'Produk',
                     data: d.produk,
-                    borderColor: '#2563eb',
-                    backgroundColor: 'rgba(37,99,235,0.1)',
-                    tension: 0.4,
-                    fill: true,
+                    backgroundColor: '#2563eb',
                 },
                 {
                     label: 'Wisata',
                     data: d.wisata,
-                    borderColor: '#f59e42',
-                    backgroundColor: 'rgba(245,158,66,0.1)',
-                    tension: 0.4,
-                    fill: true,
+                    backgroundColor: '#f59e42',
                 },
                 {
                     label: 'User',
                     data: d.user,
-                    borderColor: '#a21caf',
-                    backgroundColor: 'rgba(162,28,175,0.1)',
-                    tension: 0.4,
-                    fill: true,
+                    backgroundColor: '#a21caf',
                 },
             ]
         },
@@ -187,7 +159,7 @@ function renderChart(filter) {
 document.getElementById('filterWaktu').addEventListener('change', function() {
     renderChart(this.value);
 });
-renderChart('hari');
+renderChart('bulan');
     </script>
 </body>
 </html>

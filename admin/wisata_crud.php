@@ -66,11 +66,12 @@ $wisata = mysqli_query($conn, "SELECT * FROM wisata ORDER BY id DESC");
             <textarea name="deskripsi" placeholder="Deskripsi" required class="w-full border rounded px-3 py-2 min-h-[80px]"><?= $edit['deskripsi'] ?? '' ?></textarea>
         </div>
         <div>
-            <?php if ($edit): ?>
-                <button type="submit" name="update" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">Update</button>
-            <?php else: ?>
-                <button type="submit" name="tambah" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Tambah</button>
-            <?php endif; ?>
+            <button type="submit" name="<?= $edit ? 'update' : 'tambah' ?>" class="bg-green-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow">
+                <?= $edit ? 'Update' : 'Tambah' ?>
+            </button>
+                <?php if ($edit): ?>
+                    <a href="dashboard.php?page=wisata" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded shadow">Batal</a>
+                <?php endif; ?>
         </div>
     </form>
     <div class="overflow-x-auto">
