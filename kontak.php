@@ -9,6 +9,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <link rel="shortcut icon" href="logo.svg" type="image/x-icon">
 </head>
 
@@ -50,12 +52,12 @@
         </div>
     </header>
 
-    <section class="py-16 bg-green-50 min-h-screen">
+    <section class="py-16 bg-green-50 min-h-screen" data-aos="fade-up">
     <div class="container mx-auto px-6">
         <h1 class="text-3xl font-bold text-green-700 mb-8 text-center">Kontak Desa Demung</h1>
         <div class="max-w-5xl mx-auto bg-white rounded-lg shadow p-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             <!-- Form Kontak -->
-            <div>
+            <div class="transition hover:scale-105 hover:shadow-lg" data-aos="fade-right">
                 <form>
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-medium text-green-700">Nama</label>
@@ -81,7 +83,7 @@
                 
             </div>
             <!-- Google Maps -->
-            <div class="w-full h-80 md:h-full rounded-lg overflow-hidden shadow">
+            <div class="w-full h-80 md:h-full rounded-lg overflow-hidden shadow transition hover:scale-105 hover:shadow-lg" data-aos="fade-left">
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.590687550191!2d113.7094277735794!3d-7.726987576570314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd71efcd20d6b39%3A0xc35e4f85077c7e7d!2sKantor%20Kepala%20Desa%20Demung!5e0!3m2!1sid!2sid!4v1751357868733!5m2!1sid!2sid" 
                     width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
@@ -184,6 +186,7 @@
         window.addEventListener('resize', () => {
             closeDropdown();
         });
+        AOS.init();
     </script>
 
 </html>

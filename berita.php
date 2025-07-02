@@ -8,6 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <link rel="shortcut icon" href="logo.svg" type="image/x-icon">
 </head>
 <body class="bg-gray-50">
@@ -49,7 +51,7 @@
         </div>
     </header>
 
-    <section class="py-16 bg-green-50 min-h-screen">
+    <section class="py-16 bg-green-50 min-h-screen" data-aos="fade-up">
         <div class="container mx-auto px-6">
             <h1 class="text-3xl font-bold text-green-700 mb-2 text-center">Daftar Berita Terbaru</h1>
             <h6 class="text-lg text-gray-600 mb-8 text-center">Daftar Berita Desa Terbaru</h6>
@@ -59,7 +61,7 @@
                 if ($berita && mysqli_num_rows($berita) > 0):
                     while ($row = mysqli_fetch_assoc($berita)):
                 ?>
-                <a href="detail_berita.php?id=<?= $row['id'] ?>" class="block max-w-sm bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg transition overflow-hidden">
+                <a href="detail_berita.php?id=<?= $row['id'] ?>" class="block max-w-sm bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg transition hover:scale-105 overflow-hidden" data-aos="zoom-in">
                     <?php if ($row['gambar']) echo '<img src="admin/' . htmlspecialchars($row['gambar']) . '" class="w-full h-48 object-cover">'; ?>
                     <div class="p-5">
                         <h2 class="text-xl font-bold text-green-700 mb-2 text-center"><?= htmlspecialchars($row['judul']) ?></h2>
@@ -165,6 +167,8 @@
         window.addEventListener('resize', () => {
             closeDropdown();
         });
+        // Initialize AOS
+        AOS.init();
     </script>
 
 </body>

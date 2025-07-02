@@ -9,6 +9,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <link rel="shortcut icon" href="logo.svg" type="image/x-icon">
 </head>
 
@@ -51,7 +53,7 @@
         </div>
     </header>
 
-  <section class="py-16 bg-green-50 min-h-screen">
+  <section class="py-16 bg-green-50 min-h-screen" data-aos="fade-up">
     <div class="container mx-auto px-6">
       <h1 class="text-3xl font-bold text-green-700 mb-8 text-center">Potensi Desa Demung</h1>
       <h2 class="text-2xl font-semibold text-green-600 mb-6 text-center">UMKM Unggulan</h2>
@@ -60,7 +62,7 @@
         $produk = mysqli_query($conn, "SELECT * FROM produk ORDER BY id DESC");
         while ($row = mysqli_fetch_assoc($produk)):
         ?>
-        <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+        <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center transition hover:scale-105 hover:shadow-lg" data-aos="zoom-in">
           <?php if ($row['foto']) echo '<img src="admin/' . htmlspecialchars($row['foto']) . '" alt="' . htmlspecialchars($row['nama']) . '" class="w-24 h-24 object-cover rounded mb-4">'; ?>
           <h3 class="text-lg font-semibold mb-2 text-green-700 text-center"><?= htmlspecialchars($row['nama']) ?></h3>
           <h4 class="text-1xl font-semibold mb-3 text-green-700 text-center"><?= htmlspecialchars($row['alamat']) ?></h4>
@@ -75,7 +77,7 @@
         $wisata = mysqli_query($conn, "SELECT * FROM wisata ORDER BY id DESC");
         while ($row = mysqli_fetch_assoc($wisata)):
         ?>
-        <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+        <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center transition hover:scale-105 hover:shadow-lg" data-aos="zoom-in">
           <?php if ($row['foto']) echo '<img src="admin/' . htmlspecialchars($row['foto']) . '" alt="' . htmlspecialchars($row['nama']) . '" class="w-24 h-24 object-cover rounded mb-4">'; ?>
           <h3 class="text-lg font-semibold mb-2 text-green-700 text-center"><?= htmlspecialchars($row['nama']) ?></h3>
           <p class="text-gray-600 text-center mb-2"><?= htmlspecialchars($row['deskripsi']) ?></p>
@@ -176,6 +178,7 @@
         window.addEventListener('resize', () => {
             closeDropdown();
         });
+        AOS.init();
     </script>
 
 </body>

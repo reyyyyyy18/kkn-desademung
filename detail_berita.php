@@ -23,6 +23,8 @@ $berita_lain = mysqli_query($conn, "SELECT id, judul, gambar FROM berita WHERE i
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <link rel="shortcut icon" href="logo.svg" type="image/x-icon">
 </head>
 <body class="bg-gray-50">
@@ -50,17 +52,17 @@ $berita_lain = mysqli_query($conn, "SELECT id, judul, gambar FROM berita WHERE i
         </div>
     </header>
     <main class="container mx-auto px-6 py-10 flex flex-col md:flex-row gap-10">
-        <div class="main-detail flex-1 bg-white rounded-lg shadow p-8">
+        <div class="main-detail flex-1 bg-white rounded-lg shadow p-8" data-aos="fade-up">
             <?php if ($berita['gambar']) echo '<img src="admin/' . htmlspecialchars($berita['gambar']) . '" class="w-full max-w-lg mx-auto rounded mb-6">'; ?>
             <h1 class="text-3xl font-bold text-green-700 mb-4"><?= htmlspecialchars($berita['judul']) ?></h1>
             <div class="text-gray-700 text-lg leading-relaxed">
                 <?= nl2br(htmlspecialchars($berita['isi'])) ?>
             </div>
         </div>
-        <aside class="rightbar w-full md:w-80 bg-green-50 rounded-lg shadow p-6">
+        <aside class="rightbar w-full md:w-80 bg-green-50 rounded-lg shadow p-6" data-aos="fade-left">
             <h3 class="text-xl font-bold text-green-700 mb-4">Berita Lainnya</h3>
             <?php while ($row = mysqli_fetch_assoc($berita_lain)): ?>
-            <div class="flex items-center gap-4 mb-6 border-b pb-4">
+            <div class="flex items-center gap-4 mb-6 border-b pb-4 transition hover:scale-105 hover:shadow-lg" data-aos="zoom-in">
                 <a href="detail_berita.php?id=<?= $row['id'] ?>" class="flex items-center gap-3 hover:bg-green-100 rounded p-2 w-full">
                     <?php if ($row['gambar']) echo '<img src="admin/' . htmlspecialchars($row['gambar']) . '" class="w-16 h-12 object-cover rounded">'; ?>
                     <div class="text-green-800 font-semibold text-base"><?= htmlspecialchars($row['judul']) ?></div>
@@ -80,5 +82,8 @@ $berita_lain = mysqli_query($conn, "SELECT id, judul, gambar FROM berita WHERE i
             </div>
         </div>
     </footer>
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>

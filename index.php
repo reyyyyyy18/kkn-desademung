@@ -14,6 +14,38 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
     <link rel="shortcut icon" href="logo.svg" type="image/x-icon">
+    <!-- Tambahkan di dalam <head> -->
+        <style>
+            .logo-shine {
+            position: relative;
+            overflow: hidden;
+            }
+            .logo-shine::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(120deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 60%);
+            transform: rotate(25deg);
+            animation: shine 2.5s infinite;
+            pointer-events: none;
+            }
+            @keyframes shine {
+            0% {
+                transform: translateX(-100%) rotate(25deg);
+            }
+            60% {
+                transform: translateX(120%) rotate(25deg);
+            }
+            100% {
+                transform: translateX(120%) rotate(25deg);
+            }
+            }
+        </style>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 </head>
 
 <body class="bg-gray-50">
@@ -53,7 +85,7 @@
         </div>
     </header>
     <!-- Home Section dengan Carousel Background -->
-    <section class="py-16 relative overflow-hidden">
+    <section class="py-16 relative overflow-hidden" data-aos="fade-up">
         <!-- Carousel Background -->
         <div id="carousel-bg" class="absolute inset-0 w-full h-full z-0">
             <div id="default-carousel" class="relative w-full h-full" data-carousel="slide">
@@ -89,26 +121,30 @@
                     </a>
                 </div>
             </div>
-            <img src="logo.svg" alt="Logo Desa Demung"
-                class="w-64 h-64 object-contain rounded-full shadow-lg border-4 border-green-200 bg-white/80">
+            <div class="flex items-center gap-3">
+            <div class="h-96 rounded-full relative overflow-hidden logo-shine border-2 border-green-200 bg-white/80 shadow-lg flex items-center justify-center">
+                <img src="logo.svg" alt="Logo Desa Demung" class="h-96 object-contain" />
+            </div>
+</div>
+            
         </div>
     </section>
     <!-- Section Layanan Desa -->
-    <section class="py-16 bg-white">
+    <section class="py-16 bg-white" data-aos="fade-up">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold text-green-700 mb-8 text-center">Layanan Desa</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-green-50 rounded-lg shadow p-6 flex flex-col items-center">
+                <div class="bg-green-50 rounded-lg shadow p-6 flex flex-col items-center transition hover:scale-105 hover:shadow-lg" data-aos="flip-up">
                     <i class="bx bxs-id-card text-6xl text-green-600 mb-4"></i>
                     <h3 class="text-xl font-semibold mb-2">Administrasi Kependudukan</h3>
                     <p class="text-gray-600 text-center">Pembuatan KTP, KK, Akta Kelahiran, Akta Kematian, Pindah Datang/Keluar.</p>
                 </div>
-                <div class="bg-green-50 rounded-lg shadow p-6 flex flex-col items-center">
+                <div class="bg-green-50 rounded-lg shadow p-6 flex flex-col items-center transition hover:scale-105 hover:shadow-lg" data-aos="flip-up">
                     <i class="bx bxs-file-doc text-6xl text-green-600 mb-4"></i>
                     <h3 class="text-xl font-semibold mb-2">Pembuatan Surat Keterangan</h3>
                     <p class="text-gray-600 text-center">Surat Keterangan Domisili, Usaha, Tidak Mampu, Tanah, dan lainnya.</p>
                 </div>
-                <div class="bg-green-50 rounded-lg shadow p-6 flex flex-col items-center">
+                <div class="bg-green-50 rounded-lg shadow p-6 flex flex-col items-center transition hover:scale-105 hover:shadow-lg" data-aos="flip-up">
                     <i class="bx bxs-building-house text-6xl text-green-600 mb-4"></i>
                     <h3 class="text-xl font-semibold mb-2">Administrasi Kantor Desa</h3>
                     <p class="text-gray-600 text-center">Pengelolaan surat masuk/keluar, keuangan desa, arsip, laporan, dan perencanaan.</p>
@@ -117,7 +153,7 @@
         </div>
     </section>
     <!-- Section Berita Terbaru -->
-    <section class="py-16 bg-green-50">
+    <section class="py-16 bg-green-50" data-aos="fade-up">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold text-green-700 mb-8 text-center">Berita Terbaru</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -126,7 +162,7 @@
                 $berita = mysqli_query($conn, "SELECT * FROM berita ORDER BY id DESC LIMIT 3");
                 while ($row = mysqli_fetch_assoc($berita)):
                 ?>
-                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
+                <div class="bg-white border border-gray-200 rounded-lg shadow transition hover:scale-105 hover:shadow-lg">
                     <?php if ($row['gambar']) echo '<a href="detail_berita.php?id=' . $row['id'] . '"><img class="rounded-t-lg w-full h-48 object-cover" src="admin/' . htmlspecialchars($row['gambar']) . '" alt="' . htmlspecialchars($row['judul']) . '" /></a>'; ?>
                     <div class="p-5 flex flex-col">
                         <a href="detail_berita.php?id=<?= $row['id'] ?>">
@@ -153,6 +189,7 @@
     </footer>
     <script src="script.js"></script>
     <script>
+        AOS.init();
         // Navbar mobile toggle
         const navbarToggle = document.getElementById('navbar-toggle');
         const navbar = document.getElementById('navbar');
