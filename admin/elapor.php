@@ -1,6 +1,20 @@
 <?php
 include '../koneksi.php';
 // Tambah kolom status jika belum ada di database: ALTER TABLE elapor ADD status ENUM('belum','teratasi') DEFAULT 'belum';
+
+// Fitur hapus laporan
+if (isset($_POST['hapus_id'])) {
+    $id = intval($_POST['hapus_id']);
+    // Hapus file gambar jika ada
+    $foto = mysqli_fetch_assoc(mysqli_query($conn, "SELECT foto_laporan FROM elapor WHERE id=$id"));
+    if ($foto && !empty($foto['foto_laporan']) && file_exists("../admin/" . $foto['foto_laporan'])) {
+        unlink("../admin/" . $foto['foto_laporan']);
+    }
+    mysqli_query($conn, "DELETE FROM elapor WHERE id=$id");
+    echo "<script>alert('Laporan berhasil dihapus!');window.location='dashboard.php?page=elapor';</script>";
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['atasi_id'])) {
     $id = intval($_POST['atasi_id']);
     mysqli_query($conn, "UPDATE elapor SET status='teratasi' WHERE id=$id");
@@ -19,8 +33,8 @@ $elapor = mysqli_query($conn, "SELECT * FROM elapor ORDER BY created_at DESC");
                     <th class="py-2 px-4">Nama Pelapor</th>
                     <th class="py-2 px-4">Foto Laporan</th>
                     <th class="py-2 px-4">Deskripsi</th>
-                    <th class="py-2 px-4 hidden md:table-cell">Tanggal</th>
-                    <th class="py-2 px-4 hidden md:table-cell">Status</th>
+                    <th class="py-2 px-4">Tanggal</th>
+                    <th class="py-2 px-4">Status</th>
                     <th class="py-2 px-4">Aksi</th>
                 </tr>
             </thead>
@@ -37,7 +51,7 @@ $elapor = mysqli_query($conn, "SELECT * FROM elapor ORDER BY created_at DESC");
                     <td class="py-2 px-4 text-center"><?= nl2br(htmlspecialchars($row['deskripsi'])) ?></td>
                     <td class="py-2 px-4 text-center hidden md:table-cell"><?= date('d-m-Y H:i', strtotime($row['created_at'])) ?></td>
                     <td class="py-2 px-4 text-center hidden md:table-cell">
-                        <span class="px-2 py-1 rounded text-xs font-semibold ".($row['status']==='teratasi'?'bg-green-200 text-green-800':'bg-yellow-100 text-yellow-800')."">
+                        <span class="px-2 py-1 rounded text-xs font-semibold <?= $row['status']==='teratasi'?'bg-green-200 text-green-800':'bg-yellow-100 text-yellow-800' ?>">
                             <?= $row['status']==='teratasi'?'Teratasi':'Belum' ?>
                         </span>
                     </td>
@@ -50,6 +64,11 @@ $elapor = mysqli_query($conn, "SELECT * FROM elapor ORDER BY created_at DESC");
                         <?php else: ?>
                         <span class="text-green-600 font-bold">✓</span>
                         <?php endif; ?>
+                        <!-- Tombol Hapus -->
+                        <form method="post" style="display:inline" onsubmit="return confirm('Yakin ingin menghapus laporan ini?')">
+                            <input type="hidden" name="hapus_id" value="<?= $row['id'] ?>">
+                            <button type="submit" class="bg-red-600 text-white p-4 rounded hover:bg-red-700 ml-2">Hapus</button>
+                        </form>
                     </td>
                 </tr>
                 <?php endwhile; ?>
