@@ -54,56 +54,53 @@
 
     <section class="py-16 bg-green-50 min-h-screen" data-aos="fade-up">
     <div class="container mx-auto px-6">
-        <h1 class="text-3xl font-bold text-green-700 mb-8 text-center">Kontak Desa Demung</h1>
-        <div class="max-w-5xl mx-auto bg-white rounded-lg shadow p-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-            <!-- Form Kontak -->
-            <div class="transition hover:scale-105 hover:shadow-lg" data-aos="fade-right">
-                <form onsubmit="return sendToWA(event)">
+        <h1 class="text-3xl font-bold text-green-700 mb-8 text-center">Kontak & Lapor Desa Demung</h1>
+        <div class="w-full mx-auto bg-white rounded-lg shadow p-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+            <!-- Form Elapor -->
+            <div data-aos="fade-right">
+                <h6 class="text-green-700 font-bold text-2xl py-4">E-LAPOR</h6>
+                <form action="admin/proses_elapor.php" method="post" enctype="multipart/form-data">
                     <div class="mb-4">
-                        <label class="block mb-2 text-sm font-medium text-green-700">Nama</label>
-                        <input type="text" id="nama" required
+                        <label class="block mb-2 text-sm font-medium text-green-700">Nama Pelapor</label>
+                        <input type="text" name="nama_pelapor" required
                             class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
                             placeholder="Nama Anda">
                     </div>
                     <div class="mb-4">
-                        <label class="block mb-2 text-sm font-medium text-green-700">Email</label>
-                        <input type="email" id="email" required
-                            class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
-                            placeholder="Email Anda">
+                        <label class="block mb-2 text-sm font-medium text-green-700">Foto Laporan</label>
+                        <input type="file" name="foto_laporan" accept="image/*" required
+                            class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400">
                     </div>
                     <div class="mb-4">
-                        <label class="block mb-2 text-sm font-medium text-green-700">Pesan</label>
-                        <textarea id="pesan" required
+                        <label class="block mb-2 text-sm font-medium text-green-700">Deskripsi</label>
+                        <textarea name="deskripsi" required
                             class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
-                            rows="5" placeholder="Tulis pesan Anda..."></textarea>
+                            rows="5" placeholder="Tulis laporan Anda..."></textarea>
                     </div>
                     <button type="submit"
-                        class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 w-full">Kirim Pesan</button>
+                        class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 w-full">Kirim Laporan</button>
                 </form>
-                <script>
-                    function sendToWA(e) {
-                        e.preventDefault();
-                        var nama = document.getElementById('nama').value;
-                        var email = document.getElementById('email').value;
-                        var pesan = document.getElementById('pesan').value;
-                        var no_wa = '6281230650332'; // Ganti dengan nomor WA kades
-                        var text = `Assalamualaikum pak kades, Saya ${nama}, email saya ${email}.%0A${pesan}`;
-                        var url = `https://wa.me/${no_wa}?text=${text}`;
-                        window.open(url, '_blank');
-                        return false;
-                    }
-                </script>
-                
             </div>
-            <!-- Google Maps -->
-            <div class="w-full h-80 md:h-full rounded-lg overflow-hidden shadow transition hover:scale-105 hover:shadow-lg" data-aos="fade-left">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.590687550191!2d113.7094277735794!3d-7.726987576570314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd71efcd20d6b39%3A0xc35e4f85077c7e7d!2sKantor%20Kepala%20Desa%20Demung!5e0!3m2!1sid!2sid!4v1751357868733!5m2!1sid!2sid" 
-                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+            <!-- Info Kontak -->
+            
+        </div>
+        <!-- Google Maps di bawah -->
+        <div class="w-full h-80 md:h-96 rounded-lg overflow-hidden shadow mt-12 transition hover:scale-105 hover:shadow-lg" data-aos="fade-up">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.590687550191!2d113.7094277735794!3d-7.726987576570314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd71efcd20d6b39%3A0xc35e4f85077c7e7d!2sKantor%20Kepala%20Desa%20Demung!5e0!3m2!1sid!2sid!4v1751357868733!5m2!1sid!2sid" 
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+        <div class="transition hover:scale-105 hover:shadow-lg w-full py-4 bg-white gap-8" data-aos="fade-left">
+                <div class="mb-8 text-center text-gray-600 gap-8">
+                    <div class="items-center gap-8">
+                        <span><i class='bx bx-map text-xl'></i> Alamat: Jl. Desa Demung No. 1, Kecamatan Besuki</span>
+                        <span><i class='bx bx-phone text-xl'></i> Telepon: 0812-3456-7890</span>
+                        <span><i class='bx bx-envelope text-xl'></i> Email: info@desademung.id</span>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 </section>
 <footer class="bg-green-700 text-white py-8 mt-12">
         <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">

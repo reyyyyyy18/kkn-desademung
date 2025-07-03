@@ -4,6 +4,8 @@ $jumlah_berita = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM beri
 $jumlah_produk = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM produk"))[0];
 $jumlah_wisata = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM wisata"))[0];
 $jumlah_user = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM user"))[0];
+$jumlah_lapor = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM elapor"))[0];
+$jumlah_lapor_teratasi = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM elapor WHERE status='teratasi'"))[0];
 
 // Statistik per bulan (7 bulan terakhir)
 function getMonthlyStats($conn, $table, $date_col = 'created_at') {
@@ -22,6 +24,8 @@ $berita_bulan = getMonthlyStats($conn, 'berita', 'created_at');
 $produk_bulan = getMonthlyStats($conn, 'produk', 'created_at');
 $wisata_bulan = getMonthlyStats($conn, 'wisata', 'created_at');
 $user_bulan = getMonthlyStats($conn, 'user', 'created_at');
+$lapor_bulan = getMonthlyStats($conn, 'elapor', 'created_at');
+$lapor_teratasi_bulan = getMonthlyStats($conn, 'elapor', 'created_at'); // Nanti filter status di JS
 
 // Statistik per tahun (5 tahun terakhir)
 function getYearlyStats($conn, $table, $date_col = 'created_at') {
@@ -39,6 +43,8 @@ $berita_tahun = getYearlyStats($conn, 'berita', 'created_at');
 $produk_tahun = getYearlyStats($conn, 'produk', 'created_at');
 $wisata_tahun = getYearlyStats($conn, 'wisata', 'created_at');
 $user_tahun = getYearlyStats($conn, 'user', 'created_at');
+$lapor_tahun = getYearlyStats($conn, 'elapor', 'created_at');
+$lapor_teratasi_tahun = getYearlyStats($conn, 'elapor', 'created_at'); // Nanti filter status di JS
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -56,7 +62,7 @@ $user_tahun = getYearlyStats($conn, 'user', 'created_at');
 <body class="bg-gray-50 min-h-screen">
     <div class="container mx-auto px-6 py-12">
         <h1 class="text-3xl font-bold text-green-700 mb-8 text-center">Statistik Website Desa Demung</h1>
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 justify-items-stretch mb-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-7 gap-8 mb-12">
             <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center transition hover:scale-105 hover:shadow-lg" data-aos="zoom-in">
                 <i class='bx bx-news text-4xl text-green-600 mb-2'></i>
                 <div class="text-2xl font-bold text-green-700"><?php echo $jumlah_berita; ?></div>
@@ -76,6 +82,16 @@ $user_tahun = getYearlyStats($conn, 'user', 'created_at');
                 <i class='bx bx-user text-4xl text-green-600 mb-2'></i>
                 <div class="text-2xl font-bold text-green-700"><?php echo $jumlah_user; ?></div>
                 <div class="text-gray-600">Total User</div>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center transition hover:scale-105 hover:shadow-lg" data-aos="zoom-in">
+                <i class='bx bx-message-square-dots text-4xl text-green-600 mb-2'></i>
+                <div class="text-2xl font-bold text-green-700"><?php echo $jumlah_lapor; ?></div>
+                <div class="text-gray-600">Total Laporan</div>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center transition hover:scale-105 hover:shadow-lg" data-aos="zoom-in">
+                <i class='bx bx-check-circle text-4xl text-green-600 mb-2'></i>
+                <div class="text-2xl font-bold text-green-700"><?php echo $jumlah_lapor_teratasi; ?></div>
+                <div class="text-gray-600">Laporan Teratasi</div>
             </div>
         </div>
 
@@ -99,6 +115,7 @@ const dataStat = {
         produk: <?php echo json_encode($produk_bulan['data']); ?>,
         wisata: <?php echo json_encode($wisata_bulan['data']); ?>,
         user: <?php echo json_encode($user_bulan['data']); ?>,
+        laporan: <?php echo json_encode($lapor_bulan['data']); ?>,
     },
     tahun: {
         labels: <?php echo json_encode($berita_tahun['labels']); ?>,
@@ -106,6 +123,7 @@ const dataStat = {
         produk: <?php echo json_encode($produk_tahun['data']); ?>,
         wisata: <?php echo json_encode($wisata_tahun['data']); ?>,
         user: <?php echo json_encode($user_tahun['data']); ?>,
+        laporan: <?php echo json_encode($lapor_tahun['data']); ?>,
     }
 };
 
@@ -139,6 +157,11 @@ function renderChart(filter) {
                     label: 'User',
                     data: d.user,
                     backgroundColor: '#a21caf',
+                },
+                {
+                    label: 'Laporan',
+                    data: d.laporan,
+                    backgroundColor: '#f43f5e',
                 },
             ]
         },

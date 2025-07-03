@@ -47,3 +47,13 @@ CREATE TABLE user (
     session_admin VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Tabel elapor
+CREATE TABLE elapor (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama_pelapor VARCHAR(100) NOT NULL,
+    foto_laporan VARCHAR(255) NOT NULL,
+    deskripsi TEXT NOT NULL,
+    status ENUM('belum','teratasi') DEFAULT 'belum',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

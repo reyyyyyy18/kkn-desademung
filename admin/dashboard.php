@@ -37,6 +37,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'berita';
                 <li><a href="?page=anggota" class="block py-2 px-3 rounded hover:bg-green-800 <?= $page === 'anggota' ? 'bg-green-800' : '' ?>">Anggota</a></li>
                 <li><a href="?page=produk" class="block py-2 px-3 rounded hover:bg-green-800 <?= $page === 'produk' ? 'bg-green-800' : '' ?>">Produk</a></li>
                 <li><a href="?page=wisata" class="block py-2 px-3 rounded hover:bg-green-800 <?= $page === 'wisata' ? 'bg-green-800' : '' ?>">Wisata</a></li>
+                <li><a href="?page=elapor" class="block py-2 px-3 rounded hover:bg-green-800 <?= $page === 'elapor' ? 'bg-green-800' : '' ?>">Elapor</a></li>
                 <li><a href="logout.php" class="block py-2 px-3 rounded hover:bg-red-700 text-red-200">Logout</a></li>
             </ul>
         </aside>
@@ -48,6 +49,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'berita';
             <li><a href="?page=anggota" class="block py-2 px-3 rounded hover:bg-green-800 <?= $page === 'anggota' ? 'bg-green-800' : '' ?>">Anggota</a></li>
             <li><a href="?page=produk" class="block py-2 px-3 rounded hover:bg-green-800 <?= $page === 'produk' ? 'bg-green-800' : '' ?>">Produk</a></li>
             <li><a href="?page=wisata" class="block py-2 px-3 rounded hover:bg-green-800 <?= $page === 'wisata' ? 'bg-green-800' : '' ?>">Wisata</a></li>
+            <li><a href="?page=elapor" class="block py-2 px-3 rounded hover:bg-green-800 <?= $page === 'elapor' ? 'bg-green-800' : '' ?>">Elapor</a></li>
             <li><a href="logout.php" class="block py-2 px-3 rounded hover:bg-red-700 text-red-200">Logout</a></li>
         </ul>
         <!-- Overlay for mobile menu -->
@@ -67,6 +69,8 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'berita';
                 include 'wisata_crud.php';
             } elseif ($page === 'stats') {
                 include 'stats.php';
+            } elseif ($page === 'elapor') {
+                include 'elapor.php';
             }
             ?>
         </main>
