@@ -19,8 +19,8 @@ $elapor = mysqli_query($conn, "SELECT * FROM elapor ORDER BY created_at DESC");
                     <th class="py-2 px-4">Nama Pelapor</th>
                     <th class="py-2 px-4">Foto Laporan</th>
                     <th class="py-2 px-4">Deskripsi</th>
-                    <th class="py-2 px-4">Tanggal</th>
-                    <th class="py-2 px-4">Status</th>
+                    <th class="py-2 px-4 hidden md:table-cell">Tanggal</th>
+                    <th class="py-2 px-4 hidden md:table-cell">Status</th>
                     <th class="py-2 px-4">Aksi</th>
                 </tr>
             </thead>
@@ -35,8 +35,8 @@ $elapor = mysqli_query($conn, "SELECT * FROM elapor ORDER BY created_at DESC");
                         <?php endif; ?>
                     </td>
                     <td class="py-2 px-4 text-center"><?= nl2br(htmlspecialchars($row['deskripsi'])) ?></td>
-                    <td class="py-2 px-4 text-center"><?= date('d-m-Y H:i', strtotime($row['created_at'])) ?></td>
-                    <td class="py-2 px-4 text-center">
+                    <td class="py-2 px-4 text-center hidden md:table-cell"><?= date('d-m-Y H:i', strtotime($row['created_at'])) ?></td>
+                    <td class="py-2 px-4 text-center hidden md:table-cell">
                         <span class="px-2 py-1 rounded text-xs font-semibold ".($row['status']==='teratasi'?'bg-green-200 text-green-800':'bg-yellow-100 text-yellow-800')."">
                             <?= $row['status']==='teratasi'?'Teratasi':'Belum' ?>
                         </span>
