@@ -81,7 +81,44 @@
                         class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 w-full">Kirim Laporan</button>
                 </form>
             </div>
-            <!-- Info Kontak -->
+            <div data-aos="fade-left">
+                <h6 class="text-green-700 font-bold text-2xl py-4">HUBUNGI KAMI</h6>
+                <form onsubmit="return sendToWA(event)" class="justify-items-stretch">
+                    <div class="mb-4">
+                        <label class="block mb-2 text-sm font-medium text-green-700">Nama</label>
+                        <input type="text" id="nama" required
+                            class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+                            placeholder="Nama Anda">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block mb-2 text-sm font-medium text-green-700">Email</label>
+                        <input type="email" id="email" required
+                            class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+                            placeholder="Email Anda">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block mb-2 text-sm font-medium text-green-700">Pesan</label>
+                        <textarea id="pesan" required
+                            class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+                            rows="5" placeholder="Tulis pesan Anda..."></textarea>
+                    </div>
+                    <button type="submit"
+                        class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 w-full">Kirim Pesan</button>
+                </form>
+                <script>
+                    function sendToWA(e) {
+                        e.preventDefault();
+                        var nama = document.getElementById('nama').value;
+                        var email = document.getElementById('email').value;
+                        var pesan = document.getElementById('pesan').value;
+                        var no_wa = '6281234567890'; // Ganti dengan nomor WA kades
+                        var text = `Assalamualaikum, Saya ${nama} (${email}).%0A${pesan}`;
+                        var url = `https://wa.me/${no_wa}?text=${text}`;
+                        window.open(url, '_blank');
+                        return false;
+                    }
+                </script>
+            </div>
             
         </div>
         <!-- Google Maps di bawah -->
