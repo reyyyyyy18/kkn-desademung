@@ -61,7 +61,7 @@
                 if ($berita && mysqli_num_rows($berita) > 0):
                     while ($row = mysqli_fetch_assoc($berita)):
                 ?>
-                <a href="detail_berita.php?id=<?= $row['id'] ?>" class="block max-w-sm bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg transition hover:scale-105 overflow-hidden" data-aos="zoom-in">
+                <a href="detail_berita.php?id=<?= $row['id'] ?>" class="block w-full bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg transition hover:scale-105 overflow-hidden" data-aos="zoom-in">
                     <?php if ($row['gambar']) echo '<img src="admin/' . htmlspecialchars($row['gambar']) . '" class="w-full h-48 object-cover">'; ?>
                     <div class="p-5">
                         <h2 class="text-xl font-bold text-green-700 mb-2 text-center"><?= htmlspecialchars($row['judul']) ?></h2>
