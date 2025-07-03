@@ -55,21 +55,30 @@
         <div class="container mx-auto px-6">
             <h1 class="text-3xl font-bold text-green-700 mb-2 text-center">Daftar Berita Terbaru</h1>
             <h6 class="text-lg text-gray-600 mb-8 text-center">Daftar Berita Desa Terbaru</h6>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <?php 
-                $berita = mysqli_query($conn, "SELECT * FROM berita ORDER BY id DESC");
-                if ($berita && mysqli_num_rows($berita) > 0):
-                    while ($row = mysqli_fetch_assoc($berita)):
-                ?>
-                <a href="detail_berita.php?id=<?= $row['id'] ?>" class="block max-w-sm bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg transition hover:scale-105 overflow-hidden" data-aos="zoom-in">
-                    <?php if ($row['gambar']) echo '<img src="admin/' . htmlspecialchars($row['gambar']) . '" class="w-full h-48 object-cover">'; ?>
-                    <div class="p-5">
-                        <h2 class="text-xl font-bold text-green-700 mb-2 text-center"><?= htmlspecialchars($row['judul']) ?></h2>
-                    </div>
-                </a>
-                <?php endwhile; else: ?>
-                <p class="col-span-3 text-center text-gray-500">Tidak ada berita ditemukan.</p>
-                <?php endif; ?>
+            <!-- Panah scroll kiri-kanan -->
+            <div class="relative">
+                <button id="scrollLeft" class="hidden md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-green-600 text-white rounded-full p-2 shadow hover:bg-green-700 focus:outline-none" style="display:none;">
+                    <i class='bx bx-chevron-left text-2xl'></i>
+                </button>
+                <button id="scrollRight" class="hidden md:hidden absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-green-600 text-white rounded-full p-2 shadow hover:bg-green-700 focus:outline-none" style="display:none;">
+                    <i class='bx bx-chevron-right text-2xl'></i>
+                </button>
+                <div id="beritaScroll" class="flex gap-8 overflow-x-auto md:grid md:grid-cols-3 md:gap-8 scrollbar-thin scrollbar-thumb-green-200 pb-4 scroll-smooth">
+                    <?php 
+                    $berita = mysqli_query($conn, "SELECT * FROM berita ORDER BY id DESC");
+                    if ($berita && mysqli_num_rows($berita) > 0):
+                        while ($row = mysqli_fetch_assoc($berita)):
+                    ?>
+                    <a href="detail_berita.php?id=<?= $row['id'] ?>" class="min-w-[300px] max-w-xs bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg transition hover:scale-105 overflow-hidden flex-shrink-0 md:max-w-none md:w-auto" data-aos="zoom-in">
+                        <?php if ($row['gambar']) echo '<img src="admin/' . htmlspecialchars($row['gambar']) . '" class="w-full h-48 object-cover">'; ?>
+                        <div class="p-5">
+                            <h2 class="text-xl font-bold text-green-700 mb-2 text-center"><?= htmlspecialchars($row['judul']) ?></h2>
+                        </div>
+                    </a>
+                    <?php endwhile; else: ?>
+                    <p class="col-span-3 text-center text-gray-500">Tidak ada berita ditemukan.</p>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </section>
@@ -169,6 +178,37 @@
         });
         // Initialize AOS
         AOS.init();
+
+        // Tanda panah scroll horizontal berita (mobile)
+        const beritaScroll = document.getElementById('beritaScroll');
+        const scrollLeftBtn = document.getElementById('scrollLeft');
+        const scrollRightBtn = document.getElementById('scrollRight');
+
+        function updateArrowVisibility() {
+            if(window.innerWidth >= 768) {
+                scrollLeftBtn.style.display = 'none';
+                scrollRightBtn.style.display = 'none';
+                return;
+            }
+            // Tampilkan panah jika konten overflow
+            if (beritaScroll.scrollWidth > beritaScroll.clientWidth) {
+                scrollLeftBtn.style.display = beritaScroll.scrollLeft > 10 ? 'block' : 'none';
+                scrollRightBtn.style.display = (beritaScroll.scrollLeft + beritaScroll.clientWidth < beritaScroll.scrollWidth - 10) ? 'block' : 'none';
+            } else {
+                scrollLeftBtn.style.display = 'none';
+                scrollRightBtn.style.display = 'none';
+            }
+        }
+
+        scrollLeftBtn.addEventListener('click', () => {
+            beritaScroll.scrollBy({ left: -320, behavior: 'smooth' });
+        });
+        scrollRightBtn.addEventListener('click', () => {
+            beritaScroll.scrollBy({ left: 320, behavior: 'smooth' });
+        });
+        beritaScroll.addEventListener('scroll', updateArrowVisibility);
+        window.addEventListener('resize', updateArrowVisibility);
+        window.addEventListener('DOMContentLoaded', updateArrowVisibility);
     </script>
 
 </body>

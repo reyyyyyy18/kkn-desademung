@@ -156,13 +156,13 @@
     <section class="py-16 bg-green-50" data-aos="fade-up">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold text-green-700 mb-8 text-center">Berita Terbaru</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="flex gap-8 overflow-x-auto md:grid md:grid-cols-3 md:gap-8 scrollbar-thin scrollbar-thumb-green-200 pb-4">
                 <?php 
                 include 'koneksi.php';
                 $berita = mysqli_query($conn, "SELECT * FROM berita ORDER BY id DESC LIMIT 3");
                 while ($row = mysqli_fetch_assoc($berita)):
                 ?>
-                <div class="bg-white border border-gray-200 rounded-lg shadow transition hover:scale-105 hover:shadow-lg">
+                <div class="min-w-[300px] max-w-xs bg-white border border-gray-200 rounded-lg shadow transition hover:scale-105 hover:shadow-lg flex-shrink-0">
                     <?php if ($row['gambar']) echo '<a href="detail_berita.php?id=' . $row['id'] . '"><img class="rounded-t-lg w-full h-48 object-cover" src="admin/' . htmlspecialchars($row['gambar']) . '" alt="' . htmlspecialchars($row['judul']) . '" /></a>'; ?>
                     <div class="p-5 flex flex-col">
                         <a href="detail_berita.php?id=<?= $row['id'] ?>">
@@ -175,6 +175,42 @@
             </div>
         </div>
     </section>
+    <style>
+    #beritaScroll { scroll-snap-type: x mandatory; }
+    #beritaScroll > div { scroll-snap-align: center; }
+    </style>
+    <script>
+        // Panah scroll horizontal berita (mobile)
+        const beritaScroll = document.getElementById('beritaScroll');
+        const scrollLeftBtn = document.getElementById('scrollLeft');
+        const scrollRightBtn = document.getElementById('scrollRight');
+
+        function updateArrowVisibility() {
+            if(window.innerWidth >= 768) {
+                scrollLeftBtn.style.display = 'none';
+                scrollRightBtn.style.display = 'none';
+                return;
+            }
+            // Tampilkan panah jika konten overflow
+            if (beritaScroll.scrollWidth > beritaScroll.clientWidth) {
+                scrollLeftBtn.style.display = beritaScroll.scrollLeft > 10 ? 'block' : 'none';
+                scrollRightBtn.style.display = (beritaScroll.scrollLeft + beritaScroll.clientWidth < beritaScroll.scrollWidth - 10) ? 'block' : 'none';
+            } else {
+                scrollLeftBtn.style.display = 'none';
+                scrollRightBtn.style.display = 'none';
+            }
+        }
+
+        scrollLeftBtn.addEventListener('click', () => {
+            beritaScroll.scrollBy({ left: -240, behavior: 'smooth' });
+        });
+        scrollRightBtn.addEventListener('click', () => {
+            beritaScroll.scrollBy({ left: 240, behavior: 'smooth' });
+        });
+        beritaScroll.addEventListener('scroll', updateArrowVisibility);
+        window.addEventListener('resize', updateArrowVisibility);
+        window.addEventListener('DOMContentLoaded', updateArrowVisibility);
+    </script>
     <!-- Footer -->
     <footer class="bg-green-700 text-white py-8 mt-12">
         <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
