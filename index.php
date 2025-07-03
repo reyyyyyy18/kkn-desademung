@@ -92,15 +92,15 @@
                 <!-- Carousel wrapper -->
                 <div class="relative h-full overflow-hidden rounded-lg">
                     <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
-                        <img src="https://mercusuar.co/wp-content/uploads/2023/11/pengertian-Desa-dan-Pedesaan.jpg" class="absolute block w-full h-full object-cover object-center opacity-60"
+                        <img src="https://mercusuar.co/wp-content/uploads/2023/11/pengertian-Desa-dan-Pedesaan.jpg" class="absolute block w-full h-full object-cover object-center"
                             alt="...">
                     </div>
                     <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
-                        <img src="https://www.simpeldesa.com/blog/wp-content/uploads/2020/07/musyawarah-desa.jpg" class="absolute block w-full h-full object-cover object-center opacity-60"
+                        <img src="https://www.simpeldesa.com/blog/wp-content/uploads/2020/07/musyawarah-desa.jpg" class="absolute block w-full h-full object-cover object-center"
                             alt="...">
                     </div>
                     <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
-                        <img src="https://www.djkn.kemenkeu.go.id/files/images/2020/12/desa1.png" class="absolute block w-full h-full object-cover object-center opacity-60"
+                        <img src="https://www.djkn.kemenkeu.go.id/files/images/2020/12/desa1.png" class="absolute block w-full h-full object-cover object-center"
                             alt="...">
                     </div>
                 </div>
