@@ -111,7 +111,7 @@
                         var nama = document.getElementById('nama').value;
                         var email = document.getElementById('email').value;
                         var pesan = document.getElementById('pesan').value;
-                        var no_wa = '6281234567890'; // Ganti dengan nomor WA kades
+                        var no_wa = '6282322396666'; 
                         var text = `Assalamualaikum, Saya ${nama} (${email}).%0A${pesan}`;
                         var url = `https://wa.me/${no_wa}?text=${text}`;
                         window.open(url, '_blank');
@@ -145,8 +145,8 @@
                 <span class="font-bold">Desa Demung</span> &copy; <?= date('Y') ?>. KKN UNIVERSITAS NURUL JADID 25.
             </div>
             <div class="flex gap-4">
-                <a href="#" class="hover:text-green-200"><i class='bx bxl-tiktok'></i></a>
-                <a href="#" class="hover:text-green-200"><i class='bx bxl-instagram'></i></a>
+                <a href="https://www.tiktok.com/@pemdes.demung?_t=ZS-8xjZ94umTDu&_r=1" class="hover:text-green-200"><i class='bx bxl-tiktok'></i></a>
+                <a href="https://www.instagram.com/demung_creative?igsh=MTZtc2pjdDM0bHpnYQ==" class="hover:text-green-200"><i class='bx bxl-instagram'></i></a>
             </div>
         </div>
     </footer>

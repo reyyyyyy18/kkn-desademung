@@ -67,6 +67,9 @@ $berita_lain = mysqli_query($conn, "SELECT id, judul, gambar FROM berita WHERE i
         <div class="main-detail flex-1 bg-white rounded-lg shadow p-8" data-aos="fade-up">
             <?php if ($berita['gambar']) echo '<img src="admin/' . htmlspecialchars($berita['gambar']) . '" class="w-full max-w-lg mx-auto rounded mb-6">'; ?>
             <h1 class="text-3xl font-bold text-green-700 mb-4"><?= htmlspecialchars($berita['judul']) ?></h1>
+            <div class="text-sm text-gray-500 mb-6">
+                Dipublikasikan pada <?= date('d M Y H:i', strtotime($berita['created_at'])) ?>
+            </div>
             <div class="text-gray-700 text-lg leading-relaxed">
                 <?= nl2br(htmlspecialchars($berita['isi'])) ?>
             </div>
@@ -90,7 +93,7 @@ $berita_lain = mysqli_query($conn, "SELECT id, judul, gambar FROM berita WHERE i
             </div>
             <div class="flex gap-4">
                 <a href="#" class="hover:text-green-200"><i class='bx bxl-tiktok'></i></a>
-                <a href="#" class="hover:text-green-200"><i class='bx bxl-instagram'></i></a>
+                <a href="https://www.instagram.com/demung_creative?igsh=MTZtc2pjdDM0bHpnYQ==" class="hover:text-green-200"><i class='bx bxl-instagram'></i></a>
             </div>
         </div>
     </footer>

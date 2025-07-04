@@ -80,8 +80,8 @@
                 <span class="font-bold">Desa Demung</span> &copy; <?= date('Y') ?>. KKN UNIVERSITAS NURUL JADID 25.
             </div>
             <div class="flex gap-4">
-                <a href="#" class="hover:text-green-200"><i class='bx bxl-tiktok'></i></a>
-                <a href="#" class="hover:text-green-200"><i class='bx bxl-instagram'></i></a>
+                <a href="https://www.tiktok.com/@pemdes.demung?_t=ZS-8xjZ94umTDu&_r=1" class="hover:text-green-200"><i class='bx bxl-tiktok'></i></a>
+                <a href="https://www.instagram.com/demung_creative?igsh=MTZtc2pjdDM0bHpnYQ==" class="hover:text-green-200"><i class='bx bxl-instagram'></i></a>
             </div>
         </div>
     </footer>

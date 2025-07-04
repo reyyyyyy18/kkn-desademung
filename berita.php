@@ -51,28 +51,65 @@
         </div>
     </header>
 
-    <section class="py-16 bg-green-50 min-h-screen" data-aos="fade-up">
+    <!-- Ganti grid berita dengan scroll horizontal + panah, full Tailwind -->
+    <section class="py-16 bg-green-50" data-aos="fade-up">
         <div class="container mx-auto px-6">
-            <h1 class="text-3xl font-bold text-green-700 mb-2 text-center">Daftar Berita Terbaru</h1>
-            <h6 class="text-lg text-gray-600 mb-8 text-center">Daftar Berita Desa Terbaru</h6>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <h2 class="text-3xl font-bold text-green-700 mb-8 text-center">Berita Terbaru</h2>
+            <div class="flex gap-8 overflow-x-auto md:grid md:grid-cols-3 md:gap-8 scrollbar-thin scrollbar-thumb-green-200 pb-4">
                 <?php 
-                $berita = mysqli_query($conn, "SELECT * FROM berita ORDER BY id DESC");
-                if ($berita && mysqli_num_rows($berita) > 0):
-                    while ($row = mysqli_fetch_assoc($berita)):
+                include 'koneksi.php';
+                $berita = mysqli_query($conn, "SELECT * FROM berita ORDER BY id DESC LIMIT 3");
+                while ($row = mysqli_fetch_assoc($berita)):
                 ?>
-                <a href="detail_berita.php?id=<?= $row['id'] ?>" class="block w-full bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg transition hover:scale-105 overflow-hidden" data-aos="zoom-in">
-                    <?php if ($row['gambar']) echo '<img src="admin/' . htmlspecialchars($row['gambar']) . '" class="w-full h-48 object-cover">'; ?>
-                    <div class="p-5">
-                        <h2 class="text-xl font-bold text-green-700 mb-2 text-center"><?= htmlspecialchars($row['judul']) ?></h2>
+                <div class="w-full bg-white border border-gray-200 rounded-lg shadow transition hover:scale-105 hover:shadow-lg flex-shrink-0">
+                    <?php if ($row['gambar']) echo '<a href="detail_berita.php?id=' . $row['id'] . '"><img class="rounded-t-lg w-full h-48 object-cover" src="admin/' . htmlspecialchars($row['gambar']) . '" alt="' . htmlspecialchars($row['judul']) . '" /></a>'; ?>
+                    <div class="p-5 flex flex-col">
+                        <a href="detail_berita.php?id=<?= $row['id'] ?>">
+                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-green-600 text-left"><?= htmlspecialchars($row['judul']) ?></h5>
+                        </a>
+                        <a href="detail_berita.php?id=<?= $row['id'] ?>" class="mt-auto inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Baca Selengkapnya</a>
                     </div>
-                </a>
-                <?php endwhile; else: ?>
-                <p class="col-span-3 text-center text-gray-500">Tidak ada berita ditemukan.</p>
-                <?php endif; ?>
+                </div>
+                <?php endwhile; ?>
             </div>
         </div>
     </section>
+    <style>
+    #beritaScroll { scroll-snap-type: x mandatory; }
+    #beritaScroll > a { scroll-snap-align: center; }
+    </style>
+    <script>
+        // Panah scroll horizontal berita (mobile)
+        const beritaScroll = document.getElementById('beritaScroll');
+        const scrollLeftBtn = document.getElementById('scrollLeft');
+        const scrollRightBtn = document.getElementById('scrollRight');
+
+        function updateArrowVisibility() {
+            if(window.innerWidth >= 768) {
+                scrollLeftBtn.style.display = 'none';
+                scrollRightBtn.style.display = 'none';
+                return;
+            }
+            // Tampilkan panah jika konten overflow
+            if (beritaScroll.scrollWidth > beritaScroll.clientWidth) {
+                scrollLeftBtn.style.display = beritaScroll.scrollLeft > 10 ? 'block' : 'none';
+                scrollRightBtn.style.display = (beritaScroll.scrollLeft + beritaScroll.clientWidth < beritaScroll.scrollWidth - 10) ? 'block' : 'none';
+            } else {
+                scrollLeftBtn.style.display = 'none';
+                scrollRightBtn.style.display = 'none';
+            }
+        }
+
+        scrollLeftBtn.addEventListener('click', () => {
+            beritaScroll.scrollBy({ left: -240, behavior: 'smooth' });
+        });
+        scrollRightBtn.addEventListener('click', () => {
+            beritaScroll.scrollBy({ left: 240, behavior: 'smooth' });
+        });
+        beritaScroll.addEventListener('scroll', updateArrowVisibility);
+        window.addEventListener('resize', updateArrowVisibility);
+        window.addEventListener('DOMContentLoaded', updateArrowVisibility);
+    </script>
 
     <footer class="bg-green-700 text-white py-8 mt-12">
         <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
@@ -80,8 +117,8 @@
                 <span class="font-bold">Desa Demung</span> &copy; <?= date('Y') ?>. KKN UNIVERSITAS NURUL JADID 25.
             </div>
             <div class="flex gap-4">
-                <a href="#" class="hover:text-green-200"><i class='bx bxl-tiktok'></i></a>
-                <a href="#" class="hover:text-green-200"><i class='bx bxl-instagram'></i></a>
+                <a href="https://www.tiktok.com/@pemdes.demung?_t=ZS-8xjZ94umTDu&_r=1" class="hover:text-green-200"><i class='bx bxl-tiktok'></i></a>
+                <a href="https://www.instagram.com/demung_creative?igsh=MTZtc2pjdDM0bHpnYQ==" class="hover:text-green-200"><i class='bx bxl-instagram'></i></a>
             </div>
         </div>
     </footer>
