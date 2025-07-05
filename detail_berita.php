@@ -11,7 +11,12 @@ if (!$berita) {
     echo '<p>Berita tidak ditemukan.</p>';
     exit();
 }
-$berita_lain = mysqli_query($conn, "SELECT id, judul, gambar FROM berita WHERE id != $id ORDER BY id DESC LIMIT 5");
+
+// Ambil berita lain, jika kosong tampilkan semua berita
+$berita_lain = mysqli_query($conn, "SELECT id, judul, gambar FROM berita WHERE id != $id ORDER BY id DESC LIMIT 10");
+if (mysqli_num_rows($berita_lain) == 0) {
+    $berita_lain = mysqli_query($conn, "SELECT id, judul, gambar FROM berita ORDER BY id DESC LIMIT 10");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,14 +81,18 @@ $berita_lain = mysqli_query($conn, "SELECT id, judul, gambar FROM berita WHERE i
         </div>
         <aside class="rightbar w-full md:w-80 bg-green-50 rounded-lg shadow p-6" data-aos="fade-left">
             <h3 class="text-xl font-bold text-green-700 mb-4">Berita Lainnya</h3>
-            <?php while ($row = mysqli_fetch_assoc($berita_lain)): ?>
-            <div class="flex items-center gap-4 mb-6 border-b pb-4 transition hover:scale-105 hover:shadow-lg" data-aos="zoom-in">
-                <a href="detail_berita.php?id=<?= $row['id'] ?>" class="flex items-center gap-3 hover:bg-green-100 rounded p-2 w-full">
-                    <?php if ($row['gambar']) echo '<img src="admin/' . htmlspecialchars($row['gambar']) . '" class="w-16 h-12 object-cover rounded">'; ?>
-                    <div class="text-green-800 font-semibold text-base"><?= htmlspecialchars($row['judul']) ?></div>
-                </a>
+            <div class="flex overflow-x-auto md:block gap-4 md:gap-0 pb-2 md:pb-0 space-x-4 md:space-x-0"
+                 style="scroll-padding-left: 8px; scroll-padding-right: 8px; scroll-snap-type: x mandatory;">
+                <?php while ($row = mysqli_fetch_assoc($berita_lain)): ?>
+                <div class="min-w-[220px] max-w-xs md:w-full bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg transition hover:scale-105 overflow-hidden flex-shrink-0 md:min-w-0 md:max-w-none mx-auto mb-0 md:mb-6 border-b md:border-b-0 pb-0 md:pb-4"
+                     style="scroll-snap-align: center;">
+                    <a href="detail_berita.php?id=<?= $row['id'] ?>" class="flex items-center gap-3 hover:bg-green-100 rounded p-2 w-full">
+                        <?php if ($row['gambar']) echo '<img src="admin/' . htmlspecialchars($row['gambar']) . '" class="w-16 h-12 object-cover rounded">'; ?>
+                        <div class="text-green-800 font-semibold text-base"><?= htmlspecialchars($row['judul']) ?></div>
+                    </a>
+                </div>
+                <?php endwhile; ?>
             </div>
-            <?php endwhile; ?>
         </aside>
     </main>
     <footer class="bg-green-700 text-white py-8 mt-12">
