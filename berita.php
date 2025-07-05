@@ -63,9 +63,14 @@
                 ?>
                 <div class="w-full bg-white border border-gray-200 rounded-lg shadow transition hover:scale-105 hover:shadow-lg flex-shrink-0">
                     <?php if ($row['gambar']) echo '<a href="detail_berita.php?id=' . $row['id'] . '"><img class="rounded-t-lg w-full h-48 object-cover" src="admin/' . htmlspecialchars($row['gambar']) . '" alt="' . htmlspecialchars($row['judul']) . '" /></a>'; ?>
-                    <div class="p-5 flex flex-col">
+                    <div class="p-5 flex flex-col" data-aos="zoom-in">
                         <a href="detail_berita.php?id=<?= $row['id'] ?>">
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-green-600 text-left"><?= htmlspecialchars($row['judul']) ?></h5>
+                            <p class="text-gray-600 mb-4">
+                                Dipublikasikan pada <?= date('d M Y H:i', strtotime($row['created_at'])) ?></p>
+                            <p class="text-gray-700 text-sm mb-4 line-clamp-5">
+                                <?= nl2br(htmlspecialchars(mb_substr(strip_tags($row['isi']), 0, 400))) ?>
+                            </p>
                         </a>
                         <a href="detail_berita.php?id=<?= $row['id'] ?>" class="mt-auto inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Baca Selengkapnya</a>
                     </div>
